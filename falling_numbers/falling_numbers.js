@@ -15,6 +15,14 @@ var isThirdScreen = false;
 var isFourthScreen = false;
 
 
+var isNinethScreen = false;
+let permissionGranted = false;
+let cx, cy;
+
+let timer = 0;
+let touched = false;
+let textErased = false;
+
 // Below are for thirdApp
 var renderedImageList = [];
 var ImageMaxWidth = [];
@@ -29,6 +37,7 @@ function preload() {
   sound_3 = loadSound('assets/converted_sound_3.mp3');
   sound_4 = loadSound('assets/converted_sound_4.mp3');
   sound_5 = loadSound('assets/converted_sound_5.mp3');
+  sound_9 = loadSound('assets/converted_sound_9.mp3');
   img1_1 = loadImage('assets/1_1.png');
   img1_2 = loadImage('assets/1_2.png');
   img1_3 = loadImage('assets/1_3.png');
@@ -67,10 +76,20 @@ function preload() {
   bg5_2 = loadImage('assets/bg_5_2.jpg');
   bg5_3 = loadImage('assets/bg_5_3.jpg');
   bg5_4 = loadImage('assets/bg_5_4.jpg');
+
+  img9_1 = loadImage('assets/9/1_1.png');
+  img9_2 = loadImage('assets/9/1_2.png');
+  img9_3 = loadImage('assets/9/1_3.png');
+  img9_4 = loadImage('assets/9/1_4.png');
+  img9_5 = loadImage('assets/9/1_5.png');
+  img9_6 = loadImage('assets/9/1_6.png');
+  img9_7 = loadImage('assets/9/1_7.png');
   // add bgxx_yy
   startImage = loadImage('assets/start_image.jpeg');
   randomImageArray_1 = [img1_1, img1_2, img1_3, img1_4];
   randomImageArray_2 = [img1_1, img1_2, img1_3, img1_4];
+
+  randomImageArray_9 = [img9_2,img9_3,img9_4,img9_5,img9_1,img9_6,img9_7];
 
   randomImageArray_5 = [img1_1, img1_2, img1_3, img1_4];
   // add randomImageArray_xx
@@ -80,8 +99,42 @@ function preload() {
 
 function setup() {
   var cnv = createCanvas(648, 864);
-  cnv.parent('canvasForHTML');
+
   // cnv.mouseClicked(toggleSound);
+
+  cx = width / 2;
+  cy = height / 2;
+
+    // DeviceOrientationEvent, DeviceMotionEvent
+    if (typeof (DeviceOrientationEvent) !== 'undefined' && typeof (DeviceOrientationEvent.requestPermission) === 'function') {
+      // ios 13 device
+  
+      DeviceOrientationEvent.requestPermission()
+        .catch(() => {
+          // show permission dialog only the first time
+          let button = createButton("click to allow access to sensors");
+          button.style("font-size", "24px");
+          button.center();
+          button.mousePressed(requestAccess);
+          throw error;
+        })
+        .then(() => {
+          // on any subsequent visits
+          permissionGranted = true;
+  
+          // sound.play();
+        })
+    } else {
+      // non ios 13 device
+      textSize(48);
+      // text("non ios 13 device", 100, 100);
+      permissionGranted = true;
+  
+      // sound.play();
+    }
+
+    cnv.parent('canvasForHTML');
+
   textSize(10); // Text Size
   setInterval(AddNumberToList_1, 100);
   setInterval(AddNumberToList_2, 100);
@@ -111,7 +164,7 @@ function setup() {
   x = xstart;
   y = ystart;
   liney = ystart;
-
+  
 }
 
 function AddNumberToList_1() {
@@ -184,13 +237,19 @@ function AddNumberToList_5() {
 
 
 function draw() {
+
+  if (!permissionGranted) return;
+
+  
   if (isFirstScreen == true && isFourthScreen == false) {
     StartScreen();
   } else {
     if (appNumber == 1) {
       firstApp();
-    } else if (appNumber == 2) {
-      secondApp();
+    } else if (appNumber == 9) {
+      // ninethAppInit();
+      ninethApp();
+      // secondApp();
     } else if (appNumber == 3) {
       thirdApp();
     } else if (appNumber == 4) {
@@ -201,6 +260,20 @@ function draw() {
     // add else if (appNumber == xx) { xxApp();}
     drawGoBack();
   }
+}
+
+function requestAccess() {
+  DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response == 'granted') {
+        permissionGranted = true;
+      } else {
+        permissionGranted = false;
+      }
+    })
+    .catch(console.error);
+
+  this.remove();
 }
 
 function StartScreen() {
@@ -343,6 +416,64 @@ function fifthApp() {
     }
   }
 }
+
+function ninethAppInit() {
+  if (typeof (DeviceOrientationEvent) !== 'undefined' && typeof (DeviceOrientationEvent.requestPermission) === 'function') {
+    // ios 13 device
+
+    DeviceOrientationEvent.requestPermission()
+      .catch(() => {
+        // show permission dialog only the first time
+        let button = createButton("click to allow access to sensors");
+        button.style("font-size", "24px");
+        button.center();
+        button.mousePressed(requestAccess);
+        throw error;
+      })
+      .then(() => {
+        // on any subsequent visits
+        permissionGranted = true;
+
+        // sound.play();
+      })
+  } else {
+    // non ios 13 device
+    textSize(48);
+    // text("non ios 13 device", 100, 100);
+    permissionGranted = true;
+
+    // sound.play();
+  }
+}
+
+function ninethApp() {
+  if (!permissionGranted) return;
+
+  // if (touched == false) {touchToStart();
+  //   return;}
+  
+  // rotationX, rotationY
+  const dx = constrain(rotationY, -3, 3);
+  const dy = constrain(rotationX, -3, 3);
+  cx += dx * 1.2;
+  cy += dy * 1.2;
+  cx = constrain(cx, 0, width);
+  cy = constrain(cy, 0, height);
+
+
+  if (millis() >= 200 + timer) {
+    image(randomImageArray_9[int(random(0, 7))], cx, cy);
+    // console.log(random(randomImageArray))
+    timer = millis();
+  }
+}
+
+
+function touchToStart() {
+  // fill(20);
+  text('Touch to Start', width / 2, height /2);
+}
+
 // add function xxApp() {}
 
 function mousePressed() {
@@ -358,7 +489,7 @@ function mousePressed() {
       appNumber = 1;
     } else if ((mouseX > 312) && (mouseX < 388) && (mouseY > 280) && (mouseY < 350)) {
       isFirstScreen = false;
-      appNumber = 2;
+      appNumber = 9;
     } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
       // console.log("clicked");
       isFirstScreen = false;
@@ -467,7 +598,7 @@ function touchStarted() {
       appNumber = 1;
     } else if ((mouseX > 312) && (mouseX < 388) && (mouseY > 280) && (mouseY < 350)) {
       isFirstScreen = false;
-      appNumber = 2;
+      appNumber = 9;
     } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
       // console.log("clicked");
       isFirstScreen = false;
@@ -564,9 +695,9 @@ function touchStarted() {
 }
 
 function toggleSound() {
-  if (sound_1.isPlaying() || sound_2.isPlaying() || sound_5.isPlaying()) {
+  if (sound_1.isPlaying() || sound_9.isPlaying() || sound_5.isPlaying()) {
     sound_1.stop();
-    sound_2.stop();
+    sound_9.stop();
     sound_5.stop();
     isSoundPlaying = false;
   } else {
