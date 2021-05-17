@@ -452,12 +452,13 @@ function ninethApp() {
   cx = width / 2;
   cy = height / 2;
 
+  if (!sound_9.isPlaying()) sound_9.play();
   // if (touched == false) {touchToStart();
   //   return;}
   
   // rotationX, rotationY
-  const dx = constrain(rotationY, -3, 3);
-  const dy = constrain(rotationX, -3, 3);
+  dx = constrain(rotationY, -3, 3);
+  dy = constrain(rotationX, -3, 3);
   cx += dx * 1.2;
   cy += dy * 1.2;
   cx = constrain(cx, 0, width);
@@ -495,7 +496,6 @@ function mousePressed() {
      appNumber = 9;
      isNinethScreen = true;
      background(255); 
-     sound_9.play();
 
    } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
      // console.log("clicked");
