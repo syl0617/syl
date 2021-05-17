@@ -449,6 +449,9 @@ function ninethAppInit() {
 function ninethApp() {
   if (!permissionGranted) return;
 
+  cx = width / 2;
+  cy = height / 2;
+
   // if (touched == false) {touchToStart();
   //   return;}
   
@@ -478,111 +481,117 @@ function touchToStart() {
 
 function mousePressed() {
   // if (e == 'back') {
-  //   isFirstScreen = true;
-  //   appNumber = 0;
-  //   return true;
-  // }
+ //   isFirstScreen = true;
+ //   appNumber = 0;
+ //   return true;
+ // }
 
-  if (isFirstScreen == true) {
-    if ((mouseX > 228) && (mouseX < 288) && (mouseY > 280) && (mouseY < 340)) {
-      isFirstScreen = false;
-      appNumber = 1;
-    } else if ((mouseX > 312) && (mouseX < 388) && (mouseY > 280) && (mouseY < 350)) {
-      isFirstScreen = false;
-      appNumber = 9;
-    } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
-      // console.log("clicked");
-      isFirstScreen = false;
-      appNumber = 3;
-      isThirdScreen = true;
-    }else if ((mouseX > 224) && (mouseX < 290) && (mouseY > 400) && (mouseY < 462)) {
-      // console.log("clicked");
-      isFirstScreen = false;
-      appNumber = 4;
-      isFourthScreen = true;
-      document.getElementById("fourthDiv").classList.remove('d-none');
-      document.getElementById("canvasForHTML").classList.add('d-none');
-    } else if ((mouseX > 312) && (mouseX < 382) && (mouseY > 400) && (mouseY < 470)) {
-      // console.log("clicked");
-      isFirstScreen = false;
-      appNumber = 5;
-    }
-    // add else if with click area
-  } else if (isFourthScreen == true) {
-    if (cardSet == 1) {
-      cardOne.src = "assets/4_A/1.jpg";
-      cardTwo.src = "assets/4_A/2.jpg";
-      cardThree.src = "assets/4_A/3.jpg";
-      cardFour.src = "assets/4_A/4.jpg";
-      cardFive.src = "assets/4_A/5.jpg";
-      cardSix.src = "assets/4_A/6.jpg";
-      cardSeven.src = "assets/4_A/7.jpg";
-      cardSet = 2;
-    } else if (cardSet == 2) {
-      cardOne.src = "assets/4_B/1.jpg";
-      cardTwo.src = "assets/4_B/2.jpg";
-      cardThree.src = "assets/4_B/3.jpg";
-      cardFour.src = "assets/4_B/4.jpg";
-      cardFive.src = "assets/4_B/5.jpg";
-      cardSix.src = "assets/4_B/6.jpg";
-      cardSeven.src = "assets/4_B/7.jpg";
-      cardSet = 3;
-    } else if (cardSet == 3) {
-      cardOne.src = "assets/4_C/1.jpg";
-      cardTwo.src = "assets/4_C/2.jpg";
-      cardThree.src = "assets/4_C/3.jpg";
-      cardFour.src = "assets/4_C/4.jpg";
-      cardFive.src = "assets/4_C/5.jpg";
-      cardSix.src = "assets/4_C/6.jpg";
-      cardSeven.src = "assets/4_C/7.jpg";
-      cardSet = 4;
-    } else if (cardSet == 4) {
-      cardOne.src = "assets/4_D/1.jpg";
-      cardTwo.src = "assets/4_D/2.jpg";
-      cardThree.src = "assets/4_D/3.jpg";
-      cardFour.src = "assets/4_D/4.jpg";
-      cardFive.src = "assets/4_D/5.jpg";
-      cardSix.src = "assets/4_D/6.jpg";
-      cardSeven.src = "assets/4_D/7.jpg";
-      cardSet = 5;
-    } else if (cardSet == 5) {
-      cardOne.src = "assets/4_E/1.jpg";
-      cardTwo.src = "assets/4_E/2.jpg";
-      cardThree.src = "assets/4_E/3.jpg";
-      cardFour.src = "assets/4_E/4.jpg";
-      cardFive.src = "assets/4_E/5.jpg";
-      cardSix.src = "assets/4_E/6.jpg";
-      cardSeven.src = "assets/4_E/7.jpg";
-      cardSet = 1;
-    } 
-    sound_4.play(0, 1, 1, int(random(sound_4_duration)), 1);
-  }
+ if (isFirstScreen == true) {
+   if ((mouseX > 228) && (mouseX < 288) && (mouseY > 280) && (mouseY < 340)) {
+     isFirstScreen = false;
+     appNumber = 1;
+   } else if ((mouseX > 312) && (mouseX < 388) && (mouseY > 280) && (mouseY < 350)) {
+     isFirstScreen = false;
+     appNumber = 9;
+     isNinethScreen = true;
+     background(255); 
+     sound_9.play();
 
-  else {
-    if ((mouseX > 524) && (mouseX < 604) && (mouseY > 802) && (mouseY < 814)) {
-      isFirstScreen = true;
-      isThirdScreen = false;
-      appNumber = 0;
-      // sound_1.stop();
-      // sound_2.stop();
-      toggleSound();
-      pieceList_1 = [];
-      newpieceList_1 = [];
-      pieceList_2 = [];
-      newpieceList_2 = [];
-      pieceList_5 = [];
-      newpieceList_5 = [];
-      
-      renderedImageList = [];
-      x = xstart;
-      y = ystart;
-      liney = ystart;
-    } else {
-      if (isThirdScreen == false) {
-        toggleSound();
-      }
-    }
-  }
+   } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
+     // console.log("clicked");
+     isFirstScreen = false;
+     appNumber = 3;
+     isThirdScreen = true;
+   }else if ((mouseX > 224) && (mouseX < 290) && (mouseY > 400) && (mouseY < 462)) {
+     // console.log("clicked");
+     isFirstScreen = false;
+     appNumber = 4;
+     isFourthScreen = true;
+     document.getElementById("fourthDiv").classList.remove('d-none');
+     document.getElementById("canvasForHTML").classList.add('d-none');
+   } else if ((mouseX > 312) && (mouseX < 382) && (mouseY > 400) && (mouseY < 470)) {
+     // console.log("clicked");
+     isFirstScreen = false;
+     appNumber = 5;
+   }
+   // add else if with click area
+ } else if (isFourthScreen == true) {
+   if (cardSet == 1) {
+     cardOne.src = "assets/4_A/1.jpg";
+     cardTwo.src = "assets/4_A/2.jpg";
+     cardThree.src = "assets/4_A/3.jpg";
+     cardFour.src = "assets/4_A/4.jpg";
+     cardFive.src = "assets/4_A/5.jpg";
+     cardSix.src = "assets/4_A/6.jpg";
+     cardSeven.src = "assets/4_A/7.jpg";
+     cardSet = 2;
+   } else if (cardSet == 2) {
+     cardOne.src = "assets/4_B/1.jpg";
+     cardTwo.src = "assets/4_B/2.jpg";
+     cardThree.src = "assets/4_B/3.jpg";
+     cardFour.src = "assets/4_B/4.jpg";
+     cardFive.src = "assets/4_B/5.jpg";
+     cardSix.src = "assets/4_B/6.jpg";
+     cardSeven.src = "assets/4_B/7.jpg";
+     cardSet = 3;
+   } else if (cardSet == 3) {
+     cardOne.src = "assets/4_C/1.jpg";
+     cardTwo.src = "assets/4_C/2.jpg";
+     cardThree.src = "assets/4_C/3.jpg";
+     cardFour.src = "assets/4_C/4.jpg";
+     cardFive.src = "assets/4_C/5.jpg";
+     cardSix.src = "assets/4_C/6.jpg";
+     cardSeven.src = "assets/4_C/7.jpg";
+     cardSet = 4;
+   } else if (cardSet == 4) {
+     cardOne.src = "assets/4_D/1.jpg";
+     cardTwo.src = "assets/4_D/2.jpg";
+     cardThree.src = "assets/4_D/3.jpg";
+     cardFour.src = "assets/4_D/4.jpg";
+     cardFive.src = "assets/4_D/5.jpg";
+     cardSix.src = "assets/4_D/6.jpg";
+     cardSeven.src = "assets/4_D/7.jpg";
+     cardSet = 5;
+   } else if (cardSet == 5) {
+     cardOne.src = "assets/4_E/1.jpg";
+     cardTwo.src = "assets/4_E/2.jpg";
+     cardThree.src = "assets/4_E/3.jpg";
+     cardFour.src = "assets/4_E/4.jpg";
+     cardFive.src = "assets/4_E/5.jpg";
+     cardSix.src = "assets/4_E/6.jpg";
+     cardSeven.src = "assets/4_E/7.jpg";
+     cardSet = 1;
+   } 
+   sound_4.play(0, 1, 1, int(random(sound_4_duration)), 1);
+ }
+
+ else {
+   if ((mouseX > 524) && (mouseX < 604) && (mouseY > 802) && (mouseY < 814)) {
+     isFirstScreen = true;
+     isThirdScreen = false;
+     isNinethScreen = false;
+     appNumber = 0;
+     // sound_1.stop();
+     // sound_2.stop();
+     toggleSound();
+     pieceList_1 = [];
+     newpieceList_1 = [];
+     pieceList_2 = [];
+     newpieceList_2 = [];
+     pieceList_5 = [];
+     newpieceList_5 = [];
+     
+     renderedImageList = [];
+     x = xstart;
+     y = ystart;
+     liney = ystart;
+   } else {
+    if (isNinethScreen) return;
+     if (isThirdScreen == false) {
+       toggleSound();
+     }
+   }
+ }
 }
 
 function touchStarted() {
@@ -599,6 +608,8 @@ function touchStarted() {
     } else if ((mouseX > 312) && (mouseX < 388) && (mouseY > 280) && (mouseY < 350)) {
       isFirstScreen = false;
       appNumber = 9;
+      isNinethScreen = true;
+      background(255); 
     } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
       // console.log("clicked");
       isFirstScreen = false;
@@ -671,6 +682,7 @@ function touchStarted() {
     if ((mouseX > 524) && (mouseX < 604) && (mouseY > 802) && (mouseY < 814)) {
       isFirstScreen = true;
       isThirdScreen = false;
+      isNinethScreen = false;
       appNumber = 0;
       // sound_1.stop();
       // sound_2.stop();
@@ -687,6 +699,7 @@ function touchStarted() {
       y = ystart;
       liney = ystart;
     } else {
+      if (isNinethScreen) return;
       if (isThirdScreen == false) {
         toggleSound();
       }
