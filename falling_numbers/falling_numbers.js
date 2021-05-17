@@ -14,6 +14,7 @@ var isFirstScreen = true;
 var isThirdScreen = false;
 var isFourthScreen = false;
 
+var inputBoxDrawed = false;
 
 var isNinethScreen = false;
 let permissionGranted = false;
@@ -33,7 +34,7 @@ var randomImageArray = [];
 
 function preload() {
   sound_1 = loadSound('assets/converted_sound_1.mp3');
-  sound_2 = loadSound('assets/converted_sound_2.mp3');
+  // sound_2 = loadSound('assets/converted_sound_2.mp3');
   sound_3 = loadSound('assets/converted_sound_3.mp3');
   sound_4 = loadSound('assets/converted_sound_4.mp3');
   sound_5 = loadSound('assets/converted_sound_5.mp3');
@@ -142,8 +143,8 @@ function setup() {
   // add setInterval(AddNumberToList_xx, 100);
   amplitude_1 = new p5.Amplitude();
   amplitude_1.setInput(sound_1);
-  amplitude_2 = new p5.Amplitude();
-  amplitude_2.setInput(sound_2);
+  // amplitude_2 = new p5.Amplitude();
+  // amplitude_2.setInput(sound_2);
 
   amplitude_5 = new p5.Amplitude();
   amplitude_5.setInput(sound_5);
