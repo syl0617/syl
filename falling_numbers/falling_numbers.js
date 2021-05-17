@@ -493,7 +493,6 @@ function mousePressed() {
      appNumber = 9;
      isNinethScreen = true;
      background(255); 
-
    } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
      // console.log("clicked");
      isFirstScreen = false;
@@ -582,8 +581,11 @@ function mousePressed() {
      x = xstart;
      y = ystart;
      liney = ystart;
+
+     cx = width / 2;
+     cy = height / 2;
    } else {
-    if (isNinethScreen) return;
+     if (isNinethScreen) return;
      if (isThirdScreen == false) {
        toggleSound();
      }
@@ -607,8 +609,6 @@ function touchStarted() {
       appNumber = 9;
       isNinethScreen = true;
       background(255); 
-      cx = width / 2;
-      cy = height / 2;
     } else if ((mouseX > 412) && (mouseX < 474) && (mouseY > 284) && (mouseY < 350)) {
       // console.log("clicked");
       isFirstScreen = false;
@@ -697,6 +697,9 @@ function touchStarted() {
       x = xstart;
       y = ystart;
       liney = ystart;
+
+      cx = width / 2;
+      cy = height / 2;
     } else {
       if (isNinethScreen) return;
       if (isThirdScreen == false) {
