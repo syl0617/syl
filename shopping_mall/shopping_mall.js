@@ -19,27 +19,27 @@ function preload() {
   loadImage('assets/4_B/5.jpg');
   loadImage('assets/4_B/6.jpg');
   loadImage('assets/4_B/7.jpg');
-  loadImage('assets/4_C/1.jpg');
-  loadImage('assets/4_C/2.jpg');
-  loadImage('assets/4_C/3.jpg');
-  loadImage('assets/4_C/4.jpg');
-  loadImage('assets/4_C/5.jpg');
-  loadImage('assets/4_C/6.jpg');
-  loadImage('assets/4_C/7.jpg');
-  loadImage('assets/4_D/1.jpg');
-  loadImage('assets/4_D/2.jpg');
-  loadImage('assets/4_D/3.jpg');
-  loadImage('assets/4_D/4.jpg');
-  loadImage('assets/4_D/5.jpg');
-  loadImage('assets/4_D/6.jpg');
-  loadImage('assets/4_D/7.jpg');
-  loadImage('assets/4_E/1.jpg');
-  loadImage('assets/4_E/2.jpg');
-  loadImage('assets/4_E/3.jpg');
-  loadImage('assets/4_E/4.jpg');
-  loadImage('assets/4_E/5.jpg');
-  loadImage('assets/4_E/6.jpg');
-  loadImage('assets/4_E/7.jpg');
+  // loadImage('assets/4_C/1.jpg');
+  // loadImage('assets/4_C/2.jpg');
+  // loadImage('assets/4_C/3.jpg');
+  // loadImage('assets/4_C/4.jpg');
+  // loadImage('assets/4_C/5.jpg');
+  // loadImage('assets/4_C/6.jpg');
+  // loadImage('assets/4_C/7.jpg');
+  // loadImage('assets/4_D/1.jpg');
+  // loadImage('assets/4_D/2.jpg');
+  // loadImage('assets/4_D/3.jpg');
+  // loadImage('assets/4_D/4.jpg');
+  // loadImage('assets/4_D/5.jpg');
+  // loadImage('assets/4_D/6.jpg');
+  // loadImage('assets/4_D/7.jpg');
+  // loadImage('assets/4_E/1.jpg');
+  // loadImage('assets/4_E/2.jpg');
+  // loadImage('assets/4_E/3.jpg');
+  // loadImage('assets/4_E/4.jpg');
+  // loadImage('assets/4_E/5.jpg');
+  // loadImage('assets/4_E/6.jpg');
+  // loadImage('assets/4_E/7.jpg');
   
 }
 
