@@ -58,6 +58,9 @@ function mouseClicked() {
     cardFive.src = "assets/4_A/5.jpg";
     cardSix.src = "assets/4_A/6.jpg";
     cardSeven.src = "assets/4_A/7.jpg";
+    cardFiveMobile.src = "assets/4_A/5.jpg";
+    cardSixMobile.src = "assets/4_A/6.jpg";
+    cardSevenMobile.src = "assets/4_A/7.jpg";
     cardSet = 2;
   } else if (cardSet == 2) {
     cardOne.src = "assets/4_B/1.jpg";
@@ -67,6 +70,9 @@ function mouseClicked() {
     cardFive.src = "assets/4_B/5.jpg";
     cardSix.src = "assets/4_B/6.jpg";
     cardSeven.src = "assets/4_B/7.jpg";
+    cardFiveMobile.src = "assets/4_B/5.jpg";
+    cardSixMobile.src = "assets/4_B/6.jpg";
+    cardSevenMobile.src = "assets/4_B/7.jpg";
     cardSet = 3;
   } else if (cardSet == 3) {
     cardOne.src = "assets/4_C/1.jpg";
@@ -76,6 +82,9 @@ function mouseClicked() {
     cardFive.src = "assets/4_C/5.jpg";
     cardSix.src = "assets/4_C/6.jpg";
     cardSeven.src = "assets/4_C/7.jpg";
+    cardFiveMobile.src = "assets/4_C/5.jpg";
+    cardSixMobile.src = "assets/4_C/6.jpg";
+    cardSevenMobile.src = "assets/4_C/7.jpg";
     cardSet = 4;
   } else if (cardSet == 4) {
     cardOne.src = "assets/4_D/1.jpg";
@@ -85,6 +94,9 @@ function mouseClicked() {
     cardFive.src = "assets/4_D/5.jpg";
     cardSix.src = "assets/4_D/6.jpg";
     cardSeven.src = "assets/4_D/7.jpg";
+    cardFiveMobile.src = "assets/4_D/5.jpg";
+    cardSixMobile.src = "assets/4_D/6.jpg";
+    cardSevenMobile.src = "assets/4_D/7.jpg";
     cardSet = 5;
   } else if (cardSet == 5) {
     cardOne.src = "assets/4_E/1.jpg";
@@ -94,6 +106,9 @@ function mouseClicked() {
     cardFive.src = "assets/4_E/5.jpg";
     cardSix.src = "assets/4_E/6.jpg";
     cardSeven.src = "assets/4_E/7.jpg";
+    cardFiveMobile.src = "assets/4_E/5.jpg";
+    cardSixMobile.src = "assets/4_E/6.jpg";
+    cardSevenMobile.src = "assets/4_E/7.jpg";
     cardSet = 1;
   } 
   sound.play(0, 1, 1, int(random(soundDuration)), 1);

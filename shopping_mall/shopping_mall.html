@@ -31,11 +31,23 @@
             user-select: none;
         }
 
+
+
         @media (min-width: 768px) {
             .bd-placeholder-img-lg {
                 font-size: 3.5rem;
             }
+            .item-card-img {
+                height: 380px;
+            }
         }
+
+        @media (max-width: 768px) {
+            .sm-font {
+                font-size: 0.5rem;
+        }
+        }
+
     </style>
 
 
@@ -47,7 +59,7 @@
 
         <div class="navbar navbar-dark bg-dark shadow-sm px-3">
             <div class="container-fluid text-white my-1">
-                <div class="col-9">
+                <div class="col-3 col-md-9">
                     <div class="row">
                         <div class="col fs-4">Trend</div>
                     </div>
@@ -83,45 +95,56 @@
         <div class="album py-5">
             <div class="container">
                 <div class="row g-3">
-                    <div class="col-3">
+                    <div class="col col-md-3 h-75">
                         <div class="card border-0">
-                            <img src="assets/4_A/1.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardOne" >
+                            <img src="assets/4_A/1.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardOne">
                             </img>
                             <div class="card-body p-0 item-text">
                                 <div class="card-text mb-0 small">NEW</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col col-md-3 h-75">
                         <div class="card border-0">
-                            <img src="assets/4_A/2.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardTwo" >
+                            <img src="assets/4_A/2.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardTwo">
                             </img>
                             <div class="card-body p-0 item-text">
                                 <div class="card-text mb-0 small">NEW</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-1"></div>
-                    <div class="col-5 fs-1 my-auto">
+                    <div class="col-md-1"></div>
+                    <div class="d-none d-md-block col col-md-5 fs-1 my-auto">
                         <div class="row">
                             Click again and again!
                         </div>
                         <div class="row">
                             I am always by your side. </div>
                     </div>
+                    <div class="d-block d-md-none col col-md-5 fs-3 mx-auto my-auto">
+                        <div class="row">
+                            <div class="col">
+                                Click again and again!
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                I am always by your side. </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="album py-1">
-            <div class="container-fluid px-5">
+            <div class="container-fluid px-md-5">
                 <div class="row g-3">
-                    <div class="col">
+                    <div class="col col-md">
                         <div class="card border-0">
-                            <img src="assets/4_A/3.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardThree" >
+                            <img src="assets/4_A/3.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardThree">
                             </img>
 
                             <div class="card-body p-0 item-text">
@@ -130,10 +153,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col col-md">
                         <div class="card border-0">
-                            <img src="assets/4_A/4.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardFour" >
+                            <img src="assets/4_A/4.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardFour">
                             </img>
                             <div class="card-body p-0 item-text">
                                 <div class="card-text mb-0 small">NEW</div>
@@ -142,10 +165,10 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col d-none d-md-block">
                         <div class="card border-0">
-                            <img src="assets/4_A/5.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardFive" >
+                            <img src="assets/4_A/5.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardFive">
                             </img>
 
                             <div class="card-body p-0 item-text">
@@ -155,9 +178,9 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col d-none d-md-block">
                         <div class="card border-0">
-                            <img src="assets/4_A/6.jpg" bd-placeholder-img card-img-top width="100%" height="380"
+                            <img src="assets/4_A/6.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
                                 role="img" id="cardSix">
                             </img>
 
@@ -168,10 +191,10 @@
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col d-none d-md-block">
                         <div class="card border-0">
-                            <img src="assets/4_A/7.jpg" bd-placeholder-img card-img-top width="100%" height="380"
-                                role="img" id="cardSeven" >
+                            <img src="assets/4_A/7.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardSeven">
                             </img>
 
                             <div class="card-body p-0 item-text">
@@ -182,23 +205,66 @@
                     </div>
 
                 </div>
+
+                <div class="row g-3 pt-4 mobile-row">
+                    <div class="col d-block d-md-none">
+                        <div class="card border-0">
+                            <img src="assets/4_A/5.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardFiveMobile">
+                            </img>
+
+                            <div class="card-body p-0 item-text">
+                                <div class="card-text mb-0 small">NEW</div>
+                                <div class="card-text small">39.90 USD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-block d-md-none">
+                        <div class="card border-0">
+                            <img src="assets/4_A/6.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardSixMobile">
+                            </img>
+
+                            <div class="card-body p-0 item-text">
+                                <div class="card-text mb-0 small">NEW</div>
+                                <div class="card-text small">39.90 USD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-block d-md-none">
+                        <div class="card border-0">
+                            <img src="assets/4_A/7.jpg" class="item-card-img" bd-placeholder-img card-img-top width="100%" height="250"
+                                role="img" id="cardSevenMobile">
+                            </img>
+
+                            <div class="card-body p-0 item-text">
+                                <div class="card-text mb-0 small">NEW</div>
+                                <div class="card-text small">39.90 USD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
 
     </main>
 
-    <footer class="text-muted py-5 mt-4 bg-light">
+    <footer class="text-muted py-2 py-md-5 mt-4 bg-light">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 text-center small">
+                <div class="col-4 text-center small sm-font">
                     <p class="my-1"> FREE DELIVERY</p>
                     <p> For orders above 200 usd with Collisimo</p>
                 </div>
-                <div class="col-4 text-center small">
+                <div class="col-4 text-center small sm-font">
                     <p class="my-1"> SECURED PAYMENT</p>
                     <p> VIsa, Mastercard, Maestro, Paypal, Sofort, BCMC</p>
                 </div>
-                <div class="col-4 text-center small">
+                <div class="col-4 text-center small sm-font">
                     <p class="my-1"> RETURNS</p>
                     <p> You have 15 days to change your mind</p>
                 </div>
