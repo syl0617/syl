@@ -1507,7 +1507,7 @@ function draw() {
 }
 
 
-function mouseClicked(event) {
-  // console.log(event);
-  alert(mouseX + " , " + mouseY);
-}
+// function mouseClicked(event) {
+//   // console.log(event);
+//   alert(mouseX + " , " + mouseY);
+// }
