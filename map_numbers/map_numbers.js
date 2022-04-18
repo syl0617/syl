@@ -531,7 +531,7 @@ function drawZone(zone_number) {
     z63l5_x = 214;
     z63l5_y = 1259;
     zoneTextNumbers(zone_3_number, z63l5_x, z63l5_y, 7, 20, next_x, z63_next_y);
-    
+
 
 
 
@@ -684,8 +684,8 @@ function drawZone(zone_number) {
     z64l17_x = 393;
     z64l17_y = 1675;
     zoneTextNumbers(zone_4_number, z64l17_x, z64l17_y, 2, 20, next_x, z64_next_y);
-    
-    
+
+
 
 
   } else if (zone_number == 5) {
