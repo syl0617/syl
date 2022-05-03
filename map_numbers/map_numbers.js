@@ -1509,7 +1509,7 @@ function draw() {
     zone_9_number = randomNumbers();
     zone_10_number = randomNumbers();
 
-    sound.play(0, 1, 1, int(random(sound_duration)), 1);
+    sound.play(0, 1, 1, int(random(sound_duration)), 0.7);
 
     timer = millis();
   }
