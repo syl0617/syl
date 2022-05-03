@@ -17,7 +17,7 @@ next_x = 20;
 next_y = 2;
 
 function preload() {
-  sound = loadSound('assets/sound_compressed.mp3');
+  sound = loadSound('assets/sound_compressed.mp3', alertLoaded());
   bg = loadImage('assets/test_70.jpeg');
 }
 
@@ -1516,3 +1516,13 @@ function draw() {
 //   // console.log(event);
 //   alert(mouseX + " , " + mouseY);
 // }
+
+function alertLoaded(){
+  console.log("loaded");
+  alert("loaded");
+}
+
+function alertMotLoaded(){
+  console.log("Not loaded");
+  alert("Not loaded");
+}
