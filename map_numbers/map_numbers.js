@@ -15,9 +15,10 @@ zone_10_number = 9;
 
 next_x = 20;
 next_y = 2;
-clickedFlag = false;
+soundPlayFlag = false;
 
 function preload() {
+  beep_sound = loadSound('assets/beep_sound.mp3');
   sound = loadSound('assets/sound_compressed.mp3');
   bg = loadImage('assets/test_70.jpeg');
 }
@@ -1497,7 +1498,7 @@ function draw() {
 
 
 
-  if (millis() >= 1000 + timer) {
+  if (millis() >= 1200 + timer) {
     zone_1_number = randomNumbers();
     zone_2_number = randomNumbers();
     zone_3_number = randomNumbers();
@@ -1509,7 +1510,13 @@ function draw() {
     zone_9_number = randomNumbers();
     zone_10_number = randomNumbers();
 
-    sound.play(0, 1, 1, int(random(sound_duration)), 0.7);
+    if (sound.isLoaded() && soundPlayFlag == false) {
+      sound.play(0, 1, 0.4);
+      soundPlayFlag = true;
+    }
+
+    // sound.play(0, 1, 1, int(random(sound_duration)), 0.7);
+    beep_sound.play(0, 1, 0.025, 0.3, 0.7);
 
     timer = millis();
   }
@@ -1518,15 +1525,16 @@ function draw() {
 
 
 function mousePressed() {
+
   userStartAudio();
 }
 
-function alertLoaded(){
+function alertLoaded() {
   console.log("loaded");
   alert("loaded");
 }
 
-function alertMotLoaded(){
+function alertMotLoaded() {
   console.log("Not loaded");
   alert("Not loaded");
 }
