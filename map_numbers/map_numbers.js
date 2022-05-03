@@ -1,4 +1,4 @@
-var img;
+var sound, img;
 
 timer = 0;
 
@@ -17,6 +17,7 @@ next_x = 20;
 next_y = 2;
 
 function preload() {
+  sound = loadSound('assets/sound_compressed.mp3');
   bg = loadImage('assets/test_70.jpeg');
 }
 
@@ -25,6 +26,8 @@ function setup() {
   time = millis();
   textSize(20);
   fill(255);
+  sound_duration = sound.duration() - 1;
+
 }
 
 function randomNumbers() {
@@ -1500,6 +1503,8 @@ function draw() {
     zone_8_number = randomNumbers();
     zone_9_number = randomNumbers();
     zone_10_number = randomNumbers();
+
+    sound.play(0, 1, 1, int(random(sound_duration)), 1);
 
     timer = millis();
   }
