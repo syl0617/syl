@@ -15,13 +15,18 @@ zone_10_number = 9;
 
 next_x = 20;
 next_y = 2;
+clickedFlag = false;
 
 function preload() {
-  sound = loadSound('assets/sound_compressed.mp3', alertLoaded());
+  sound = loadSound('assets/sound_compressed.mp3');
   bg = loadImage('assets/test_70.jpeg');
 }
 
 function setup() {
+
+  var load = sound.isLoaded();
+  alert(load);
+
   cnv = createCanvas(3827, 2053);
   time = millis();
   textSize(20);
@@ -1512,10 +1517,9 @@ function draw() {
 }
 
 
-// function mouseClicked(event) {
-//   // console.log(event);
-//   alert(mouseX + " , " + mouseY);
-// }
+function mousePressed() {
+  userStartAudio();
+}
 
 function alertLoaded(){
   console.log("loaded");
