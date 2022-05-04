@@ -28,9 +28,11 @@ function setup() {
   var load = sound.isLoaded();
   alert(load);
 
-  cnv = createCanvas(3827, 2053);
+  // cnv = createCanvas(3827, 2053);
+  cnv = createCanvas(3827 / 2, 2053 / 2);
   time = millis();
-  textSize(20);
+  // textSize(20);
+  textSize(10);
   fill(255);
   sound_duration = sound.duration() - 1;
 
@@ -45,9 +47,10 @@ function textRandomnumbers(text, x, y) {
 }
 
 function zoneTextNumbers(zone_number, zone_line_x, zone_line_y, times, fontsize = 20, nex_x = next_x, nex_y = next_y) {
-  textSize(fontsize);
+  textSize(fontsize / 2);
   const res = Array.from(Array(times)).map((_, i) => {
-    return text(zone_number, zone_line_x + i * nex_x, zone_line_y + i * nex_y);
+    // return text(zone_number, zone_line_x + i * nex_x, zone_line_y + i * nex_y);
+    return text(zone_number, (zone_line_x + i * nex_x) / 2, (zone_line_y + i * nex_y) / 2);
   });
   textSize(20);
 }
@@ -1525,7 +1528,10 @@ function draw() {
 
 
 function mousePressed() {
+  userStartAudio();
+}
 
+function touchStarted() {
   userStartAudio();
 }
 
