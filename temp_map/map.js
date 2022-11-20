@@ -152,6 +152,6 @@ list = [
 
 for (const element of list) {
     L.circleMarker([element[1], element[2]], {
-        radius: 1, renderer: myRenderer
+        radius: 2, renderer: myRenderer
     }).addTo(map).bindPopup(element[0]);
 }
