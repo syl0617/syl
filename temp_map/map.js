@@ -105,7 +105,7 @@ list = [
 ['Cyanea eleeleensis',22.1812246436489,-159.641080102849],
 ['Amaranthus brownii',23.0605232074254,-161.921269012528],
 ['Ochrosia kilaueaensis',19.54278,-155.66583],
-['Roystonea stellata', 20.218249343126214, -74.19812213703709],
+['Roystonea stellata', 20.21, -74.22],
 ['Nobregaea latinervis',32.7458821436546,-16.9900775007084],
 ['Fissidens microstictus',32.6886000035539,-16.9137575955707],
 ['Angraecopsis dolabriformis',0.336294407865051,6.71955849887789],
