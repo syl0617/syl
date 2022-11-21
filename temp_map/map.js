@@ -150,8 +150,27 @@ list = [
 ];
 
 
+temp_list = ['Centaurea pseudoleucolepis',
+'Vernonia sechellensis',
+'Fitchia mangarevensis',
+'Argyroxiphium virescens',
+'Psiadia schweinfurthii',
+'Pluchea glutinosa',
+'Delilia inelegans',
+'Commidendrum gummiferum']
+
+
+col = 'blue'
 for (const element of list) {
+    if (temp_list.includes(element[0])) {
+        col = 'black'
+    }
+     else {
+         col = 'blue'
+     }
+    
     L.circleMarker([element[1], element[2]], {
-        radius: 2, renderer: myRenderer
+        
+        radius: 2, renderer: myRenderer,  color: col
     }).addTo(map).bindPopup(element[0]);
 }
