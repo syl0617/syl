@@ -2,10 +2,10 @@
 var map = L.map('map').setView([51.505, -0.09], 5);
 
 
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-// }).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
 // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor',    
@@ -150,15 +150,45 @@ list = [
 ];
 
 
-temp_list = ['Centaurea pseudoleucolepis',
-'Vernonia sechellensis',
-'Fitchia mangarevensis',
-'Argyroxiphium virescens',
-'Psiadia schweinfurthii',
-'Pluchea glutinosa',
-'Delilia inelegans',
-'Commidendrum gummiferum']
+// temp_list = ['Centaurea pseudoleucolepis',
+// 'Vernonia sechellensis',
+// 'Fitchia mangarevensis',
+// 'Argyroxiphium virescens',
+// 'Psiadia schweinfurthii',
+// 'Pluchea glutinosa',
+// 'Delilia inelegans',
+// 'Commidendrum gummiferum']
 
+// temp_list = ['Astragalus nitidiflorus',
+// 'Euphrasia mendoncae',
+// 'Viola cryana',
+// 'Ornithogalum visianicum',
+// 'Nobregaea latinervis',
+// 'Fissidens microstictus']
+
+// 'Nobregaea latinervis' = 1
+// 'Fissidens microstictus' = 2
+// 'Astragalus nitidiflorus' = 3
+// 'Euphrasia mendoncae' = 4
+// 'Viola cryana' = 5
+// 'Ornithogalum visianicum' = 6
+
+temp_list = ['Nobregaea latinervis',
+'Fissidens microstictus',
+'Astragalus nitidiflorus',
+'Euphrasia mendoncae',
+'Viola cryana',
+'Ornithogalum visianicum']
+
+var polylinePoints = [
+    [32.7458821436546,-16.9900775007084],
+    [32.6886000035539,-16.9137575955707],
+    [37.720774,-1.166508],
+    [41.8078944975401,-6.76293546059905],
+    [47.5808374618003,4.13919888447793],
+    [42.395178,16.249263]
+
+]
 
 col = 'blue'
 for (const element of list) {
@@ -166,7 +196,7 @@ for (const element of list) {
         col = 'black'
     }
      else {
-         col = 'blue'
+         col = 'transparent'
      }
     
     L.circleMarker([element[1], element[2]], {
@@ -174,3 +204,5 @@ for (const element of list) {
         radius: 2, renderer: myRenderer,  color: col
     }).addTo(map).bindPopup(element[0]);
 }
+
+var polyline = L.polyline(polylinePoints).addTo(map).showMeasurements();
