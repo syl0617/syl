@@ -205,4 +205,4 @@ for (const element of list) {
     }).addTo(map).bindPopup(element[0]);
 }
 
-var polyline = L.polyline(polylinePoints).addTo(map).showMeasurements();
+var polyline = L.polyline(polylinePoints).addTo(map).showMeasurements({showTotalDistance: false});
