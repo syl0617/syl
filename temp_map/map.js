@@ -202,7 +202,13 @@ for (const element of list) {
     L.circleMarker([element[1], element[2]], {
         
         radius: 2, renderer: myRenderer,  color: col
-    }).addTo(map).bindPopup("<img src=https://via.placeholder.com/200>");
+    }).addTo(map).bindPopup("<img src=assets/150.png>");
+    
+    const img = new Image();
+    img.src = "assets/150.png";
+    // preloading
+
+
 // }).addTo(map).bindPopup("<img src=" + element[0] + ">");
 // }).addTo(map).bindPopup(element[0]);
 }
