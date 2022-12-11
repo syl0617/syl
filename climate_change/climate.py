@@ -152,7 +152,7 @@ for x in multiplied_key_values:
     text += colored(multiplied_key_values[x]['minclimate'], multiplied_key_values[x]
                     ['maxclimate'], multiplied_key_values[x]['sunlightminute'], "◼︎")
     
-    # temp.append([multiplied_key_values[x]['minclimate'], multiplied_key_values[x]['maxclimate'], multiplied_key_values[x]['sunlightminute']])
+    temp.append([multiplied_key_values[x]['minclimate'], multiplied_key_values[x]['maxclimate'], multiplied_key_values[x]['sunlightminute']])
     # f.write(str(multiplied_key_values[x]['minclimate']) + "," + str(multiplied_key_values[x]['maxclimate']) + "," + str(multiplied_key_values[x]['sunlightminute']) + "\n")
     
     multiplied_key_values_rgb_to_hex.append(_from_rgb(
@@ -161,20 +161,22 @@ for x in multiplied_key_values:
 
 # f.close()
 print(text)
+print(temp)
 
 
-WIDTH = 650  # change as neededd
-HEIGHT = 650  # change as needed
+WIDTH = 1920  # change as neededd
+HEIGHT = 1080  # change as needed
 
 root = tk.Tk()
 # root.eval('tk::PlaceWindow . center')
-
-root.attributes("-fullscreen", True)
-root.resizable(True, True)
+root.geometry("1920x1080")
+# root.attributes("-fullscreen", False)
+# root.resizable(True, True)
 canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT)
 # canvas.place(relx=0.5, rely=0.5)
 canvas.pack(expand=True)
-rect = canvas.create_rectangle(10, 10, WIDTH, HEIGHT, fill='blue', outline="")
+# rect = canvas.create_rectangle(10, 10, WIDTH, HEIGHT, fill='blue', outline="")
+rect = canvas.create_rectangle(0, 0, WIDTH, HEIGHT, fill='blue', outline="")
 
 stopwatch = tk.Label(root, anchor="center", text="Test")
 stopwatch.pack()
@@ -182,7 +184,9 @@ minutes = 0
 seconds = 0
 
 numb = 0
-fastness = 250
+fastness = 1000
+# fastness = 250
+
 fastness_limit = 15
 done_flag = False
 
@@ -224,14 +228,15 @@ def task():
     numb = l
     numb = int(str(numb).split("#")[1])
     change_bg(numb)
-    if int(numb) % 20 == 0:
-        fastness = fastness - 10
-        # print(fastness)
-    if fastness <= fastness_limit:
-        fastness = fastness_limit
+    
+    # if int(numb) % 20 == 0:
+    #     fastness = fastness - 10
+    #     # print(fastness)
+    # if fastness <= fastness_limit:
+    #     fastness = fastness_limit
 
 l = root.after(10, task)
-update_stopwatch()
+# update_stopwatch()
 
-# root.mainloop()
+root.mainloop()
 
