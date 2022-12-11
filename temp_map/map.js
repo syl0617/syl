@@ -2,10 +2,10 @@
 var map = L.map('map').setView([51.505, -0.09], 5);
 
 
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-// }).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
 
 // L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor',    
@@ -84,7 +84,7 @@ list = [
 ['Astragalus nitidiflorus',37.720774,-1.166508],
 ['Begonia eiromischa',5.31230569337336,100.232396709521],
 ['Ornithogalum visianicum',42.395178,16.249263],
-['Eulophia stenopetala',89.81666667,27.51666667],
+['Eulophia stenopetala',27.48874230368232, 89.6390471820124],
 ['Blutaparon rigidum',-0.247734086101438,-90.6183458181885],
 ['Delilia inelegans',-1.27269267947476,-90.4360595024097],
 ['Sicyos villosus',-1.2833,-90.4333],
@@ -105,7 +105,7 @@ list = [
 ['Cyanea eleeleensis',22.1812246436489,-159.641080102849],
 ['Amaranthus brownii',23.0605232074254,-161.921269012528],
 ['Ochrosia kilaueaensis',19.54278,-155.66583],
-['Roystonea stellata',-74.22,20.21],
+['Roystonea stellata', 20.21, -74.22],
 ['Nobregaea latinervis',32.7458821436546,-16.9900775007084],
 ['Fissidens microstictus',32.6886000035539,-16.9137575955707],
 ['Angraecopsis dolabriformis',0.336294407865051,6.71955849887789],
@@ -133,7 +133,7 @@ list = [
 ['Scleria chevalieri',12.583333,-16.266667],
 ['Eriocaulon inundatum',11.193611,-8.085],
 ['Eriocaulon jordanii',8.73033,1.72642],
-['Beilschmiedia ningmingensis',21.98432285,107.2878016],
+['Beilschmiedia ningmingensis',21.98432285,107.2878016], 
 ['Streblorrhiza speciosa',-29.11667,167.95],
 ['Euchorium cubense',22.6788,-83.7546],
 ['Myoporum rimatarense',-22.6513619225355,-152.805662209363],
@@ -150,8 +150,61 @@ list = [
 ];
 
 
+// temp_list = ['Centaurea pseudoleucolepis',
+// 'Vernonia sechellensis',
+// 'Fitchia mangarevensis',
+// 'Argyroxiphium virescens',
+// 'Psiadia schweinfurthii',
+// 'Pluchea glutinosa',
+// 'Delilia inelegans',
+// 'Commidendrum gummiferum']
+
+// temp_list = ['Astragalus nitidiflorus',
+// 'Euphrasia mendoncae',
+// 'Viola cryana',
+// 'Ornithogalum visianicum',
+// 'Nobregaea latinervis',
+// 'Fissidens microstictus']
+
+// 'Nobregaea latinervis' = 1
+// 'Fissidens microstictus' = 2
+// 'Astragalus nitidiflorus' = 3
+// 'Euphrasia mendoncae' = 4
+// 'Viola cryana' = 5
+// 'Ornithogalum visianicum' = 6
+
+temp_list = ['Nobregaea latinervis',
+'Fissidens microstictus',
+'Astragalus nitidiflorus',
+'Euphrasia mendoncae',
+'Viola cryana',
+'Ornithogalum visianicum'];
+
+var polylinePoints = [
+    [32.7458821436546,-16.9900775007084],
+    [32.6886000035539,-16.9137575955707],
+    [37.720774,-1.166508],
+    [41.8078944975401,-6.76293546059905],
+    [47.5808374618003,4.13919888447793],
+    [42.395178,16.249263]
+
+]
+
+col = 'blue';
 for (const element of list) {
+    if (temp_list.includes(element[0])) {
+        col = 'black';
+    }
+     else {
+         col = 'transparent';
+     }
+    
     L.circleMarker([element[1], element[2]], {
-        radius: 2, renderer: myRenderer
-    }).addTo(map).bindPopup(element[0]);
+        
+        radius: 2, renderer: myRenderer,  color: col
+    }).addTo(map).bindPopup("<img src=https://via.placeholder.com/200>");
+// }).addTo(map).bindPopup("<img src=" + element[0] + ">");
+// }).addTo(map).bindPopup(element[0]);
 }
+
+var polyline = L.polyline(polylinePoints).addTo(map).showMeasurements({showTotalDistance: false});
