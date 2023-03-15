@@ -64,7 +64,7 @@ for (const element of list) {
     
     L.circleMarker([element[1], element[2]], {
         
-        radius: 1 + element[3] * 0.1, renderer: myRenderer
+        radius: 1 + element[3] * 0.3, renderer: myRenderer
     }).addTo(map).bindPopup(element[0]);
 
     // const img = new Image();
