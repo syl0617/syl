@@ -23,17 +23,28 @@ var myRenderer = L.canvas({ padding: 0.1 });
 
 
 list = [
-    ["Ranunculaceae",43.12681, 6.01939,97],
-    ["Iridaceae",43.12681, 6.01939,86],
-    ["Asparagaceae",43.12681, 6.01939,91],
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86],
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,91],
     ["Liliaceae",43.18255, 5.94518,96],
-    ["Liliaceae",43.12681, 6.01939,96],
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,96],
     ["Caprifoliaceae",43.16348, 6.09282,72],
     ["Apocynaceae",43.10166, 6.18990,70],
-    ["Ranunculaceae",43.12681, 6.01939,97],
-    ["Iridaceae",43.12681, 6.01939,86]
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
+    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86]
 ];
 
+// list = [
+//     ["Ranunculaceae",43.12681, 6.01939,97],
+//     ["Iridaceae",43.12681, 6.01939,86],
+//     ["Asparagaceae",43.12681, 6.01939,91],
+//     ["Liliaceae",43.18255, 5.94518,96],
+//     ["Liliaceae",43.12681, 6.01939,96],
+//     ["Caprifoliaceae",43.16348, 6.09282,72],
+//     ["Apocynaceae",43.10166, 6.18990,70],
+//     ["Ranunculaceae",43.12681, 6.01939,97],
+//     ["Iridaceae",43.12681, 6.01939,86]
+// ];
 
 
 
