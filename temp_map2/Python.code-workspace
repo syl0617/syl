@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../Sinhan/Python"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "git"
+	}
+}

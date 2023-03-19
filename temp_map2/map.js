@@ -1,5 +1,7 @@
 
-var map = L.map('map').setView([43.16, 6.05], 12);
+// var map = L.map('map').setView([43.16, 6.05], 12);
+
+var map = L.map('map').setView([46.708333, 1.716668], 6);
 
 
 // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -59,12 +61,26 @@ list = [
 // ]
 
 
+fr_border = [[51.0833333, -4.783333333333333],
+[51.0833333, 8.216666666666667],
+[42.3333333, 8.216666666666667],
+[42.3333333, -4.783333333333333],
+[51.0833333, -4.783333333333333]];
+
+// [46.708333, 1.716668]
+
+//north, France reaches a point of extremity at a latitude of 51°05' N
+// mainland extreme point in the south is situated at a latitude of 42°20' N 
+// Looking offshore, the furthest point of southern France 50°01' S.
+// East 8°13' E,  offshore longitude of 55°50' E
+// west longitude 4°47' W
+
 for (const element of list) {
    
     
     L.circleMarker([element[1], element[2]], {
         
-        radius: 1 + element[3] * 0.3, renderer: myRenderer
+        radius: 1 + element[3] * 0.005, renderer: myRenderer
     }).addTo(map).bindPopup(element[0]);
 
     // const img = new Image();
@@ -76,4 +92,4 @@ for (const element of list) {
 // }).addTo(map).bindPopup(element[0]);
 }
 
-// var polyline = L.polyline(polylinePoints).addTo(map).showMeasurements({showTotalDistance: false});
+var polyline = L.polyline(fr_border).addTo(map).hideMeasurements({showTotalDistance: false});
