@@ -67,6 +67,23 @@ fr_border = [[51.0833333, -4.783333333333333],
 [42.3333333, -4.783333333333333],
 [51.0833333, -4.783333333333333]];
 
+longitude_range = 51.0833333 - 42.3333333; 
+latitude_range = 8.216666666666667 + 4.783333333333333;
+
+x_scale = 500 / longitude_range;
+y_scale = 500 / latitude_range;
+
+pixel_border = [];
+
+for (point in list) {
+    x_pixel = (point[2] - 42.3333333) * x_scale;
+    y_pixel = 500 - (point[1] + 4.783333333333333) * y_scale;
+    pixel_border.push([x_pixel, y_pixel]);
+}
+
+
+
+
 // [46.708333, 1.716668]
 
 //north, France reaches a point of extremity at a latitude of 51°05' N
@@ -93,3 +110,5 @@ for (const element of list) {
 }
 
 var polyline = L.polyline(fr_border).addTo(map).hideMeasurements({showTotalDistance: false});
+
+
