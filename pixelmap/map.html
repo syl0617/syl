@@ -144,14 +144,14 @@
 			}
 		}
 
-		function drawLines(pixelCoordList) {
+		function drawLines(pixelCoordList, scale = 0.1) {
 			for (let i = 0; i < pixelCoordList.length; i++) {
 				const [x, y, weight] = pixelCoordList[i];
 
 				// Define the line color and width
 				const lineColor = getRandomColor();
 				const lineWidth = 1;
-				const scaledLineWidth = parseInt(weight * scaleFactor);
+				const scaledLineWidth = parseInt(weight * scale);
 
 				
 
@@ -185,7 +185,7 @@
 		// drawPoints(pixelCoordList);
 
 
-		function drawButton(month, year) {
+		function drawButton(month, year, scale) {
 
 			ctx.putImageData(imageData, 0, 0);
 			pixelCoordList = [];
@@ -201,7 +201,7 @@
 
 			pixelCoordList.push([x, y, w]);
 
-			drawLines(pixelCoordList);
+			drawLines(pixelCoordList, scale);
 
 }
 
@@ -245,9 +245,7 @@
 	</script>
 
 <form>
-	<label for="number-input">Year:</label>
-
-
+	<label for="year-input">Year:</label>
 	<select name="year" id="year-input">
 		<option value="1969">1969</option>
 		<option value="1977">1977</option>
@@ -276,8 +274,7 @@
 	  </select>
 
 
-	<label for="number-input">Month:</label>
-
+	<label for="month-input">Month:</label>
 	<select name="month" id="month-input">
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -293,6 +290,9 @@
 		<option value="12">12</option>
 	  </select>
 
+	  <label for="scale-input">Scale:</label>
+	  <input type="text" id="scale-input">
+
 	<button type="submit" onclick="submitNumber()">Submit</button>
 </form>
 
@@ -302,9 +302,9 @@
 			event.preventDefault();
 			var year = document.getElementById("year-input").value;
 			var month = document.getElementById("month-input").value;
-
+			var scale = document.getElementById("scale-input").value;
 			// Do something with the number
-			drawButton(month, year)
+			drawButton(month, year, scale)
 		}
 </script>
 
