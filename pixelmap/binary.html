@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Binary pattern canvas</title>
-
 </head>
 <body>
   <div>
@@ -10,7 +9,9 @@
     <input type="text" id="inputText">
     <button onclick="drawCanvas()">Draw pattern</button>
       
-  Size: <input type="range" min="10" max="50" value="20" id="slider">
+    <span id="sizeText">Size: 20</span><input type="range" min="10" max="50" value="20" id="slider">
+  <button id="download" style="display:none;">Download</button>
+
   </div>
 
 
@@ -21,6 +22,9 @@
 
 const canvas = document.getElementById('canvas');
 const slider = document.getElementById('slider');
+const drawButton = document.querySelector('button');
+
+const download = document.getElementById('download');
 
 // initialize canvas size and binary string
 let binaryString = '00000000000000';
@@ -30,8 +34,27 @@ resizeCanvas();
 // add event listener to slider
 slider.addEventListener('input', function() {
   rectSize = parseInt(this.value);
+
+    sizeText.innerText = 'Size: ' + rectSize;
   resizeCanvas();
 });
+
+
+// add event listener to download button
+download.addEventListener('click', function() {
+    const link = document.createElement('a');
+  const dataURL = canvas.toDataURL('image/jpeg');
+  const filename = inputText.value.trim() + '.jpg' || 'pattern.jpg';
+  link.href = dataURL;
+  link.download = filename;
+  link.click();
+});
+
+
+drawButton.addEventListener('click', function() {
+      download.style.display = 'inline-block'; // show download button
+    });
+
 
 // function to resize canvas
 function resizeCanvas() {
@@ -86,7 +109,7 @@ function stringToBinary(str) {
     function drawCanvas() {
       const inputText = document.getElementById('inputText').value;
       const binaryString = stringToBinary(inputText);
-    //   const canvas = document.getElementById('Canvas');
+    
       binaryToCanvas(binaryString, canvas);
     }
   </script>
