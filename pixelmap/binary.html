@@ -6,28 +6,56 @@
 </head>
 <body>
   <div>
-    <label for="inputText">Enter text:</label>
+    <label for="inputText">Enter plant?</label>
     <input type="text" id="inputText">
     <button onclick="drawCanvas()">Draw pattern</button>
+      
+  Size: <input type="range" min="10" max="50" value="20" id="slider">
   </div>
-  <canvas id="myCanvas"></canvas>
+
+
+<canvas id="canvas"></canvas>
+
   
   <script>
-    function stringToBinary(str) {
-      let binary = '';
-      for (let i = 0; i < str.length; i++) {
-        let charCode = str.charCodeAt(i).toString(2);
-        while (charCode.length < 8) {
-          charCode = '0' + charCode;
-        }
-        binary += charCode;
-      }
-      return binary;
+
+const canvas = document.getElementById('canvas');
+const slider = document.getElementById('slider');
+
+// initialize canvas size and binary string
+let binaryString = '00000000000000';
+let rectSize = parseInt(slider.value);
+resizeCanvas();
+
+// add event listener to slider
+slider.addEventListener('input', function() {
+  rectSize = parseInt(this.value);
+  resizeCanvas();
+});
+
+// function to resize canvas
+function resizeCanvas() {
+//   binaryToCanvas(binaryString, canvas, rectSize);
+drawCanvas();
+}
+
+function stringToBinary(str) {
+  str = str.toUpperCase(); // capitalize the input string
+  let binary = '';
+  for (let i = 0; i < str.length; i++) {
+    let charCode = str.charCodeAt(i).toString(2);
+    while (charCode.length < 8) {
+      charCode = '0' + charCode;
     }
+    binary += charCode;
+  }
+  return binary;
+}
+
 
     function binaryToCanvas(binaryString, canvas) {
   const context = canvas.getContext('2d');
-  const rectSize = 20;
+//   const rectSize = 20;
   const rows = Math.ceil(binaryString.length / 2);
   const cols = Math.min(2, binaryString.length / rows);
   canvas.width = cols * rectSize;
@@ -58,7 +86,7 @@
     function drawCanvas() {
       const inputText = document.getElementById('inputText').value;
       const binaryString = stringToBinary(inputText);
-      const canvas = document.getElementById('myCanvas');
+    //   const canvas = document.getElementById('Canvas');
       binaryToCanvas(binaryString, canvas);
     }
   </script>
