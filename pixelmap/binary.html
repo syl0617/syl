@@ -32,20 +32,20 @@
   const cols = Math.min(2, binaryString.length / rows);
   canvas.width = cols * rectSize;
   canvas.height = rows * rectSize;
-  canvas.style.backgroundColor = '#FFFF00'; // yellow
+  const colors = ['#00FFFF', '#FF00FF', '#FFFF00', '#000000']; // Cyan, Magenta, Yellow, Black
   let x = 0, y = 0;
   for (let i = 0; i < binaryString.length; i += 2) {
     if (binaryString[i] === '0') {
       context.fillStyle = '#FFFFFF'; // white
     } else {
-      context.fillStyle = '#000000'; // black
+      context.fillStyle = colors[Math.floor(Math.random() * colors.length)];
     }
     context.fillRect(x, y, rectSize, rectSize);
     x += rectSize;
     if (binaryString[i+1] === '0') {
       context.fillStyle = '#FFFFFF'; // white
     } else {
-      context.fillStyle = '#000000'; // black
+      context.fillStyle = colors[Math.floor(Math.random() * colors.length)];
     }
     context.fillRect(x, y, rectSize, rectSize);
     x = 0;
