@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary pattern canvas</title>
+
+</head>
+<body>
+  <div>
+    <label for="inputText">Enter text:</label>
+    <input type="text" id="inputText">
+    <button onclick="drawCanvas()">Draw pattern</button>
+  </div>
+  <canvas id="myCanvas"></canvas>
+  
+  <script>
+    function stringToBinary(str) {
+      let binary = '';
+      for (let i = 0; i < str.length; i++) {
+        let charCode = str.charCodeAt(i).toString(2);
+        while (charCode.length < 8) {
+          charCode = '0' + charCode;
+        }
+        binary += charCode;
+      }
+      return binary;
+    }
+
+    function binaryToCanvas(binaryString, canvas) {
+  const context = canvas.getContext('2d');
+  const rectSize = 20;
+  const rows = Math.ceil(binaryString.length / 2);
+  const cols = Math.min(2, binaryString.length / rows);
+  canvas.width = cols * rectSize;
+  canvas.height = rows * rectSize;
+  canvas.style.backgroundColor = '#FFFF00'; // yellow
+  let x = 0, y = 0;
+  for (let i = 0; i < binaryString.length; i += 2) {
+    if (binaryString[i] === '0') {
+      context.fillStyle = '#FFFFFF'; // white
+    } else {
+      context.fillStyle = '#000000'; // black
+    }
+    context.fillRect(x, y, rectSize, rectSize);
+    x += rectSize;
+    if (binaryString[i+1] === '0') {
+      context.fillStyle = '#FFFFFF'; // white
+    } else {
+      context.fillStyle = '#000000'; // black
+    }
+    context.fillRect(x, y, rectSize, rectSize);
+    x = 0;
+    y += rectSize;
+  }
+}
+
+
+
+    function drawCanvas() {
+      const inputText = document.getElementById('inputText').value;
+      const binaryString = stringToBinary(inputText);
+      const canvas = document.getElementById('myCanvas');
+      binaryToCanvas(binaryString, canvas);
+    }
+  </script>
+</body>
+</html>
