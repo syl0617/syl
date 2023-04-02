@@ -6,17 +6,17 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
-		canvas {
-			border: 1px solid black;
-		}
-
-
 		* {
 			padding: 50;
 			margin: 50;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			box-sizing: border-box;
+		}
+
+		canvas {
+			background-color: transparent;
+			border: 1px solid black;
 		}
 	</style>
 </head>
@@ -27,18 +27,18 @@
 	<script type="text/javascript" src="data.json"></script>
 
 	<script>
-
-		
 		function getRandomColor() {
 			// const r = Math.floor(Math.random() * 256);
 			// const g = Math.floor(Math.random() * 256);
 			// const b = Math.floor(Math.random() * 256);
 			// return `rgb(${r},${g},${b})`;
 
-			colorChart = ["c7b683", "c6b864", "ab8d6f", "e1be7b", "a88340","615443","7a5c2f","a18840","95825b","99833c","837553"]
+			colorChart = ["c7b683", "c6b864", "ab8d6f", "e1be7b", "a88340", "615443", "7a5c2f", "a18840", "95825b", "99833c",
+				"837553"
+			]
 			random = Math.floor(Math.random() * colorChart.length);
 
-			return "#"+ colorChart[random];
+			return "#" + colorChart[random];
 		}
 
 
@@ -52,23 +52,31 @@
 		];
 
 
-		
+
 		var year = 1995
 		var month = 6
 		var scale = 0.1
 
 		// Define the canvas element
 		var canvas = document.getElementById("myCanvas");
-		var ctx = canvas.getContext("2d");
+		var ctx = canvas.getContext('2d', { alpha: true });
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 		// set the fill color to white
-		ctx.fillStyle = 'white';
+		ctx.fillStyle = 'transparent';
 
 		// fill the entire canvas with white
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
-		var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		for (let i = 0; i < imageData.data.length; i += 4) {
+			const alpha = imageData.data[i + 3];
+			if (alpha < 255) {
+				console.log('Canvas has transparency');
+				break;
+			}
+		}
 
 		ctx.fRect = function (x, y, w, h) {
 			x = parseInt(x);
@@ -171,7 +179,6 @@
 				const scaledLineWidth = parseInt(weight * scale);
 
 
-
 				centerX = x;
 				centerY = y;
 
@@ -191,13 +198,10 @@
 				ctx.lineTo(centerX, canvas.height);
 				ctx.stroke();
 
-				console.log(scaledLineWidth);
+				// console.log(scaledLineWidth);
 			}
 
-
-
 		}
-
 
 		// drawPoints(pixelCoordList);
 
@@ -208,7 +212,7 @@
 			pixelCoordList = [];
 
 			var data_list = getDataByMonthYear(json_data, month, year)
-			console.log(data_list)
+			// console.log(data_list)
 
 
 			for (var i = 0; i < data_list.length; i++) {
@@ -223,38 +227,6 @@
 			}
 
 		}
-
-
-
-
-
-		// Define the point list
-		// var list = [
-		// 	["Ranunculaceae", 43.12681, 6.01939, 97],
-		// 	["Iridaceae", 43.12681, 6.01939, 86],
-		// 	["Asparagaceae", 43.12681, 6.01939, 91],
-		// 	["Liliaceae", 43.18255, 5.94518, 96],
-		// 	["Liliaceae", 43.12681, 6.01939, 96],
-		// 	["Caprifoliaceae", 43.16348, 6.09282, 72],
-		// 	["Apocynaceae", 43.10166, 6.18990, 70],
-		// 	["Ranunculaceae", 43.12681, 6.01939, 97],
-		// 	["Iridaceae", 43.12681, 6.01939, 86]
-		// ];
-
-		// Convert the coordinates to pixels
-
-
-		// 		// Draw the points
-
-		// 		for (let i = 0; i < pixelCoordList.length; i++) {
-		//   const [x, y] = pixelCoordList[i];
-		//   //ctx.fillStyle = "red";
-
-		//   ctx.fillStyle = getRandomColor();
-
-		//   ctx.fRect(x, y, 1, 1);
-		// //   ctx.fillRect(x, y, 1, 1);
-		// }
 	</script>
 
 	<form>
@@ -308,74 +280,142 @@
 		<button type="submit" onclick="submitNumber()">Submit</button>
 	</form>
 
-	
+
 	<div class="scb"> </div>
 	<script>
+		const yearsAndMonths = [{
+				"Year": 1969,
+				"Month": [1]
+			},
+			{
+				"Year": 1977,
+				"Month": [8]
+			},
+			{
+				"Year": 1979,
+				"Month": [5]
+			},
+			{
+				"Year": 1980,
+				"Month": [1]
+			},
+			{
+				"Year": 1981,
+				"Month": [1, 8]
+			},
+			{
+				"Year": 1983,
+				"Month": [5]
+			},
+			{
+				"Year": 1984,
+				"Month": [5, 6]
+			},
+			{
+				"Year": 1985,
+				"Month": [5, 6]
+			},
+			{
+				"Year": 1986,
+				"Month": [4, 5, 6]
+			},
+			{
+				"Year": 1987,
+				"Month": [3, 4, 5, 6, 8, 12]
+			},
+			{
+				"Year": 1988,
+				"Month": [3, 5, 7, 9]
+			},
+			{
+				"Year": 1989,
+				"Month": [4, 5, 6, 8, 9, 11]
+			},
+			{
+				"Year": 1990,
+				"Month": [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1991,
+				"Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1992,
+				"Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+			},
+			{
+				"Year": 1993,
+				"Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1994,
+				"Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1995,
+				"Month": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1996,
+				"Month": [2, 3, 4, 5, 6, 7, 8, 10, 11]
+			},
+			{
+				"Year": 1997,
+				"Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1998,
+				"Month": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+			},
+			{
+				"Year": 1999,
+				"Month": [6]
+			},
+			{
+				"Year": 2000,
+				"Month": [6]
+			}
+		];
 
-const yearsAndMonths = [
-  { "Year": 1969, "Month": [1] },
-  { "Year": 1977, "Month": [8] },
-  { "Year": 1979, "Month": [5] },
-  { "Year": 1980, "Month": [1] },
-  { "Year": 1981, "Month": [1, 8] },
-  { "Year": 1983, "Month": [5] },
-  { "Year": 1984, "Month": [5, 6] },
-  { "Year": 1985, "Month": [5, 6] },
-  { "Year": 1986, "Month": [4, 5, 6] },
-  { "Year": 1987, "Month": [3, 4, 5, 6, 8, 12] },
-  { "Year": 1988, "Month": [3, 5, 7, 9] },
-  { "Year": 1989, "Month": [4, 5, 6, 8, 9, 11] },
-  { "Year": 1990, "Month": [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1991, "Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1992, "Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] },
-  { "Year": 1993, "Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1994, "Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1995, "Month": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1996, "Month": [2, 3, 4, 5, 6, 7, 8, 10, 11] },
-  { "Year": 1997, "Month": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1998, "Month": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
-  { "Year": 1999, "Month": [6] },
-  { "Year": 2000, "Month": [6] }
-];
+		// Get the year and month select elements
+		const yearSelect = document.getElementById("year-input");
+		const monthSelect = document.getElementById("month-input");
 
-    // Get the year and month select elements
-    const yearSelect = document.getElementById("year-input");
-    const monthSelect = document.getElementById("month-input");
+		// Populate the year select element with the available years
+		yearsAndMonths.forEach(yearAndMonth => {
+			const option = document.createElement("option");
+			option.value = yearAndMonth.Year;
+			option.text = yearAndMonth.Year;
+			yearSelect.add(option);
+		});
 
-    // Populate the year select element with the available years
-    yearsAndMonths.forEach(yearAndMonth => {
-        const option = document.createElement("option");
-        option.value = yearAndMonth.Year;
-        option.text = yearAndMonth.Year;
-        yearSelect.add(option);
-    });
+		// Function to update the month select element based on the selected year
+		function updateMonthSelect() {
+			// Clear the existing options
+			monthSelect.innerHTML = "";
 
-    // Function to update the month select element based on the selected year
-    function updateMonthSelect() {
-        // Clear the existing options
-        monthSelect.innerHTML = "";
+			// Get the selected year value
+			const selectedYear = yearSelect.value;
 
-        // Get the selected year value
-        const selectedYear = yearSelect.value;
+			// Find the corresponding months for the selected year
+			const selectedYearAndMonths = yearsAndMonths.find(yearAndMonth => yearAndMonth.Year == selectedYear);
+			if (selectedYearAndMonths) {
+				// Populate the month select element with the corresponding months
+				selectedYearAndMonths.Month.forEach(month => {
+					const option = document.createElement("option");
+					option.value = month;
+					option.text = month;
+					monthSelect.add(option);
+				});
+			}
+		}
 
-        // Find the corresponding months for the selected year
-        const selectedYearAndMonths = yearsAndMonths.find(yearAndMonth => yearAndMonth.Year == selectedYear);
-        if (selectedYearAndMonths) {
-            // Populate the month select element with the corresponding months
-            selectedYearAndMonths.Month.forEach(month => {
-                const option = document.createElement("option");
-                option.value = month;
-                option.text = month;
-                monthSelect.add(option);
-            });
-        }
-    }
 		function submitNumber() {
 			// Get the value of the input field
 			event.preventDefault();
-			 year = document.getElementById("year-input").value;
-			 month = document.getElementById("month-input").value;
-			 scale = document.getElementById("scale-input").value;
+			year = document.getElementById("year-input").value;
+			month = document.getElementById("month-input").value;
+			scale = document.getElementById("scale-input").value;
 			// Do something with the number
 			drawButton(month, year, scale)
 		}
@@ -394,7 +434,7 @@ const yearsAndMonths = [
 		// add a click event listener to the button to save the screenshot
 		button.addEventListener('click', function () {
 			// get the screenshot image data URL from the canvas
-			const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with quality level 0.9
+			const dataURL = canvas.toDataURL('image/png'); // use JPEG format with quality level 0.9
 
 			// create an Image object and set its source to the data URL
 			const img = new Image();
@@ -409,15 +449,16 @@ const yearsAndMonths = [
 				screenshotCanvas.height = img.height;
 
 
-				const context = screenshotCanvas.getContext('2d');
+				const context = screenshotCanvas.getContext('2d', { alpha: true });
+				context.clearRect(0, 0, canvas.width, canvas.height);
 				context.drawImage(img, 0, 0);
 
 
 				// create a link element to download the image
 				const link = document.createElement('a');
-				link.download = year.toString() + month.toString().padStart(2, "0") + '.jpg'; // use '.jpg' file extension for JPEG format
-				link.href = screenshotCanvas.toDataURL('image/jpeg',
-				0.9); // use JPEG format with quality level 0.9
+				link.download = year.toString() + month.toString().padStart(2, "0") +
+				'.png'; // use '.jpg' file extension for JPEG format
+				link.href = screenshotCanvas.toDataURL('image/png'); // use JPEG format with quality level 0.9
 				link.click();
 			};
 		});
@@ -426,61 +467,58 @@ const yearsAndMonths = [
 </html>
 
 <script>
+	const data = json_data.map(item => item.year + item.month);
+	console.log(data);
+
+	const uniqueArray = [...new Set(data)];
+
+	function splitString(str, firstPartLength) {
+		const firstPart = str.substr(0, firstPartLength);
+		const secondPart = str.substr(firstPartLength);
+
+		return [firstPart, secondPart];
+	}
+
+	uniqueArray.forEach((item) => {
+		ss = splitString(item, 4)
+		drawButton(ss[1], ss[0], 0.1)
 
 
+		setTimeout(function () {
+
+			const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with quality level 0.9
+
+			// create an Image object and set its source to the data URL
+			const img = new Image();
+			img.src = dataURL;
+
+			// when the image has finished loading, draw it on a new canvas to create the screenshot
+			img.onload = function () {
+				const screenshotCanvas = document.createElement('canvas');
+				screenshotCanvas.width = img.width;
+				screenshotCanvas.height = img.height;
 
 
-
-const data = json_data.map(item => item.year+item.month);
-console.log(data);
-
-const uniqueArray = [...new Set(data)];
-
-function splitString(str, firstPartLength) {
-  const firstPart = str.substr(0, firstPartLength);
-  const secondPart = str.substr(firstPartLength);
-
-  return [firstPart, secondPart];
-}
-
-uniqueArray.forEach((item) => {
-	ss= splitString(item,4)
-			drawButton(ss[1], ss[0], 0.1)
-			
-			
-			setTimeout(function() {
-				
-				const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with quality level 0.9
-
-		// create an Image object and set its source to the data URL
-		const img = new Image();
-		img.src = dataURL;
-
-		// when the image has finished loading, draw it on a new canvas to create the screenshot
-		img.onload = function () {
-			const screenshotCanvas = document.createElement('canvas');
-			screenshotCanvas.width = img.width;
-			screenshotCanvas.height = img.height;
+				const context = screenshotCanvas.getContext('2d', { alpha: true });
+				context.drawImage(img, 0, 0);
 
 
-			const context = screenshotCanvas.getContext('2d');
-			context.drawImage(img, 0, 0);
+				// create a link element to download the image
+				const link = document.createElement('a');
+				link.download = ss[0].toString() + ss[1].toString().padStart(2, "0") +
+				'.jpg'; // use '.jpg' file extension for JPEG format
+				link.href = screenshotCanvas.toDataURL('image/jpeg',
+					0.9); // use JPEG format with quality level 0.9
+				link.click();
+			}, 2000
+		})
+
+	});
 
 
-			// create a link element to download the image
-			const link = document.createElement('a');
-			link.download = ss[0].toString() + ss[1].toString().padStart(2, "0") + '.jpg'; // use '.jpg' file extension for JPEG format
-			link.href = screenshotCanvas.toDataURL('image/jpeg',
-			0.9); // use JPEG format with quality level 0.9
-link.click();
-},2000})
+	uniqueArray.forEach((item) => {
 
-});
-
-
-uniqueArray.forEach((item) => {
-
-const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with quality level 0.9
+		const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with quality level 0.9
 
 		// create an Image object and set its source to the data URL
 		const img = new Image();
@@ -489,30 +527,28 @@ const dataURL = canvas.toDataURL('image/jpeg', 0.9); // use JPEG format with qua
 		// when the image has finished loading, draw it on a new canvas to create the screenshot
 		img.onload = function () {
 
-            ss= splitString(item,4)
-			drawButton(ss[1], ss[0], 0.1, function() {
-                			const screenshotCanvas = document.createElement('canvas');
-			screenshotCanvas.width = img.width;
-			screenshotCanvas.height = img.height;
+			ss = splitString(item, 4)
+			drawButton(ss[1], ss[0], 0.1, function () {
+				const screenshotCanvas = document.createElement('canvas');
+				screenshotCanvas.width = img.width;
+				screenshotCanvas.height = img.height;
 
 
-			const context = screenshotCanvas.getContext('2d');
-			context.drawImage(img, 0, 0);
+				const context = screenshotCanvas.getContext('2d', { alpha: true });
+				context.drawImage(img, 0, 0);
 
 
-			// create a link element to download the image
-			const link = document.createElement('a');
-			link.download = ss[0].toString() + ss[1].toString().padStart(2, "0") + '.jpg'; // use '.jpg' file extension for JPEG format
-			link.href = screenshotCanvas.toDataURL('image/jpeg',
-			0.9); // use JPEG format with quality level 0.9
-link.click();
+				// create a link element to download the image
+				const link = document.createElement('a');
+				link.download = ss[0].toString() + ss[1].toString().padStart(2, "0") +
+				'.jpg'; // use '.jpg' file extension for JPEG format
+				link.href = screenshotCanvas.toDataURL('image/jpeg',
+					0.9); // use JPEG format with quality level 0.9
+				link.click();
 
-            })
-
-
-}
-}
-);
+			})
 
 
+		}
+	});
 </script>
