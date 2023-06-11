@@ -61,6 +61,8 @@
 		var canvas = document.getElementById("myCanvas");
 		var ctx = canvas.getContext('2d', { alpha: true });
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.antialias = 'subpixel';
+
 
 		// set the fill color to white
 		ctx.fillStyle = 'transparent';
@@ -147,7 +149,8 @@
 						var w = parseInt(data_list[i].rank);
 						pixelCoordList.push([x, y, w]);
 
-						drawLines(pixelCoordList);
+						drawCircles(pixelCoordList);
+						// drawLines(pixelCoordList);
 					}
 				})
 				.catch(error => console.error(error));
@@ -200,8 +203,30 @@
 
 				// console.log(scaledLineWidth);
 			}
-
 		}
+
+		function drawCircles(pixelCoordList, scale = 0.1) {
+			// ctx.imageSmoothingEnabled = true;
+
+    for (let i = 0; i < pixelCoordList.length; i++) {
+        const [x, y, weight] = pixelCoordList[i];
+
+		const circleColor = getRandomColor();
+        const lineWidth = 1;
+        const scaledLineWidth = weight * scale;
+
+        // Draw the empty circle
+        ctx.beginPath();
+        ctx.arc(x, y, scaledLineWidth, 0, 2 * Math.PI);
+        ctx.strokeStyle = circleColor;
+        ctx.lineWidth = lineWidth;
+        ctx.stroke();
+
+        console.log(scaledLineWidth);
+    }
+}
+
+
 
 		// drawPoints(pixelCoordList);
 
@@ -222,7 +247,8 @@
 
 				pixelCoordList.push([x, y, w]);
 
-				drawLines(pixelCoordList, scale);
+				drawCircles(pixelCoordList, scale);
+								// drawLines(pixelCoordList, scale);
 
 			}
 
@@ -447,11 +473,13 @@
 				const screenshotCanvas = document.createElement('canvas');
 				screenshotCanvas.width = img.width;
 				screenshotCanvas.height = img.height;
-
+				
 
 				const context = screenshotCanvas.getContext('2d', { alpha: true });
 				context.clearRect(0, 0, canvas.width, canvas.height);
+				context.antialias = 'subpixel';
 				context.drawImage(img, 0, 0);
+
 
 
 				// create a link element to download the image
