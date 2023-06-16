@@ -2,9 +2,58 @@
 <html>
 <head>
   <title>Binary pattern canvas</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .video-background video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .canvas-container {
+      margin-top: 30px;
+      margin-bottom:30px; /* Add margin-bottom to create space below the canvas */
+
+    }
+
+    .title {
+      margin-top: 50px;
+      font-size: 60px; /* Adjust the font size as desired */
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="plant_hq.mp4" type="video/mp4">
+    </video>
+  </div>
+
   <div>
+    <h1 class="title">PL NTE</h1>
     <label for="inputText">Enter plant?</label>
     <input type="text" id="inputText">
     <button onclick="drawCanvas()">Draw pattern</button>
@@ -15,8 +64,9 @@
   </div>
 
 
+  <div class="canvas-container">
 <canvas id="canvas"></canvas>
-
+</div>
   
   <script>
 
