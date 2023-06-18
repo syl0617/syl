@@ -54,7 +54,7 @@
 <body>
 
   <div class="video-background">
-    <video autoplay loop >
+    <video id="bgvideo" loop>
       <source src="plant_hq.mp4" type="video/mp4">
     </video>
   </div>
@@ -64,7 +64,7 @@
     <div class="inputline">
     <label for="inputText">Enter plant?</label>
     <input type="text" id="inputText">
-    <button onclick="drawCanvas()">Draw pattern</button>
+    <button id="drawbutton" onclick="drawCanvas()">Draw pattern</button>
       
     <span id="sizeText">Size: 20</span><input type="range" min="10" max="50" value="20" id="slider">
   <button id="download" style="display:none;">Download</button>
@@ -75,6 +75,10 @@
 
   <div class="canvas-container">
 <canvas id="canvas"></canvas>
+
+<button id="playButton">Play Video</button>
+
+
 </div>
   
   <script>
@@ -171,6 +175,18 @@ function stringToBinary(str) {
     
       binaryToCanvas(binaryString, canvas);
     }
+
+    var video = document.getElementById("bgvideo");
+    var playButton = document.getElementById("playButton");
+
+function playVideoWithSound() {
+  video.muted = false; // Unmute the video
+  video.play();
+  playButton.style.display = "none"; // Hide the play button after starting the video
+  }
+
+  playButton.addEventListener("click", playVideoWithSound);
+
   </script>
 </body>
 </html>
