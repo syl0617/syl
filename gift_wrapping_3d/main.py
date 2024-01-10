@@ -10,7 +10,7 @@ import matplotlib.patches as patches
 from matplotlib.collections import PatchCollection
 
 
-obj_file_path = 'gift_wrapping_3d\\low_poly_banana3.obj'
+obj_file_path = 'gift_wrapping_3d\\bottle.obj'
 
 def load_xyz_coordinates(file_path):
     x_coordinates = []
@@ -131,7 +131,7 @@ def get_hull_faces(points):
     return c_hull
 
 
-def init_visualization(points, hull_len):
+def init_visualization_3d(points, hull_len):
     """
    Initializes 3D matplotlib visualization and adds points.
 
@@ -165,7 +165,7 @@ def init_visualization(points, hull_len):
 
 
 # drawing algorithm
-def draw_convex_hull(points, hull):
+def draw_convex_hull_3d(points, hull):
     """
     Iteratively draws convex hull faces one by one.
     """
@@ -200,7 +200,7 @@ def draw_convex_hull(points, hull):
         tri3d.set_alpha(0.3)
 
         if c == len(hull) - 1:
-            fig, ax = init_visualization(points, len(hull))
+            fig, ax = init_visualization_3d(points, len(hull))
             ax.add_collection3d(tri3d)
 
             fig.canvas.draw()
@@ -265,5 +265,5 @@ if __name__ == "__main__":
 
     # print(points)
     # print(hull)
-    draw_convex_hull(points, hull)
+    draw_convex_hull_3d(points, hull)
     draw_convex_hull_2d(points, hull)
