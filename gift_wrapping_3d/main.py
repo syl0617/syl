@@ -1,4 +1,4 @@
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
 import mpl_toolkits.mplot3d as a3
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
@@ -6,8 +6,11 @@ import numpy as np
 from convex_hull import gift_wrapping, Point
 from random import randrange
 
+import matplotlib.patches as patches
+from matplotlib.collections import PatchCollection
 
-obj_file_path = 'gift_wrapping_3d\\apple.obj'
+
+obj_file_path = 'gift_wrapping_3d\\low_poly_banana3.obj'
 
 def load_xyz_coordinates(file_path):
     x_coordinates = []
@@ -169,8 +172,6 @@ def draw_convex_hull(points, hull):
     triangles = []
     for c in range(len(hull)):  # faces in convex hull
 
-
-
         # Adding the X, Y, and Z axis lines
         x = []
         y = []
@@ -189,6 +190,7 @@ def draw_convex_hull(points, hull):
         z.append(hull[c].points[2].z)
 
         tri_points = list(zip(x, y, z))
+
         print(f"({c}) Face points : {tri_points}")
         triangles.append(tri_points)
 
@@ -208,6 +210,51 @@ def draw_convex_hull(points, hull):
     plt.show()
 
 
+
+def init_2d_visualization(points, hull_len):
+    """
+    Initializes 2D matplotlib visualization and adds points.
+
+    Parameters:
+        points (list): x, y coords for points
+        hull_len (int): Number of faces in convex hull
+
+    Returns:
+        fig (matplotlib Figure): Figure object
+        ax (Axes): 2D axes
+    """
+    fig, ax = plt.subplots(figsize=(8, 8))
+
+    ax.set_xlabel('X Axis', fontsize=14, color='green')
+    ax.set_ylabel('Y Axis', fontsize=14, color='green')
+    ax.scatter(points[0], points[1])
+
+    # show number of points and faces
+    ax.text(0, 1.05, 'points: ' + str(len(points[0])), transform=ax.transAxes, fontsize=16, color='blue')
+    ax.text(0, 1.0, 'faces: ' + str(hull_len), transform=ax.transAxes, fontsize=16, color='blue')
+
+    return fig, ax
+
+def draw_convex_hull_2d(points, hull):
+    """
+    Iteratively draws convex hull faces one by one in 2D.
+    """
+    fig, ax = init_2d_visualization(points, len(hull))
+
+    for c in range(len(hull)):  # faces in convex hull
+
+        # Adding the X and Y axis lines
+        x = [hull[c].points[0].x, hull[c].points[1].x, hull[c].points[2].x]
+        y = [hull[c].points[0].y, hull[c].points[1].y, hull[c].points[2].y]
+
+        # Draw the convex hull face using a PatchCollection
+        face = patches.Polygon(list(zip(x, y)), edgecolor='black', facecolor='none')
+        ax.add_collection(PatchCollection([face], edgecolor='black', facecolor='none', alpha=0.7))
+
+    plt.show()
+
+
+
 if __name__ == "__main__":
     nrange = 60
     npoints = get_points_num()
@@ -219,3 +266,4 @@ if __name__ == "__main__":
     # print(points)
     # print(hull)
     draw_convex_hull(points, hull)
+    draw_convex_hull_2d(points, hull)
