@@ -82,7 +82,7 @@ def generate_points(num_points, max_coord):
         """
     while True:
         try:
-            nmode = input("Enter 'm' for manually inserting points coordinates or 'r' to generate random points:")
+            nmode = input("Enter 'm' for manually inserting points coordinates or 'r' to generate random points:/ 'b: banana")
             if nmode == "m":  # manual generation
                 points = generate_manual_points(num_points, max_coord)
                 break
