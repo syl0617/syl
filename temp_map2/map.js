@@ -9,10 +9,10 @@ var map = L.map('map').setView([46.708333, 1.716668], 6);
 //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 // }).addTo(map);
 
-// L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor',    
-//     //other attributes.
-// }).addTo(map);
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributor',    
+    //other attributes.
+}).addTo(map);
 
 
 var myRenderer = L.canvas({ padding: 0.1 });
@@ -24,17 +24,30 @@ var myRenderer = L.canvas({ padding: 0.1 });
 // }
 
 
+// list = [
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86],
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,91],
+//     ["Liliaceae",43.18255, 5.94518,96],
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,96],
+//     ["Caprifoliaceae",43.16348, 6.09282,72],
+//     ["Apocynaceae",43.10166, 6.18990,70],
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
+//     ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86]
+// ];
+
 list = [
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86],
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,91],
-    ["Liliaceae",43.18255, 5.94518,96],
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,96],
-    ["Caprifoliaceae",43.16348, 6.09282,72],
-    ["Apocynaceae",43.10166, 6.18990,70],
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,97],
-    ["Asparagaceae, Liliaceae, Iridaceae, Ranunculaceae",43.12681, 6.01939,86]
+["a",43.59316	,4.00465,56],
+["a",43.1036	,3.08186,85],
+["a",43.79264	,3.70797,96],
+["a",43.12681	,6.01939,96],
+["a",43.65414	,3.64409,96],
+["a",43.12681	,6.01939,101],
+["a",43.10166	,6.1899 ,101],
+["a",43.10166	,6.1899 ,104],
+["a",43.10166	,6.1899 ,104]
 ];
+
 
 // list = [
 //     ["Ranunculaceae",43.12681, 6.01939,97],
@@ -97,7 +110,7 @@ for (const element of list) {
     
     L.circleMarker([element[1], element[2]], {
         
-        radius: 1 + element[3] * 0.005, renderer: myRenderer
+        radius: 1 + element[3] * 0.1, renderer: myRenderer
     }).addTo(map).bindPopup(element[0]);
 
     // const img = new Image();
