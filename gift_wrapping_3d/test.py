@@ -99,9 +99,34 @@ def draw_convex_hull_2d(points, hull):
 
     # plt.show()
 
+def gift_wrapping(points):
+    hull = []
+    
+    # Find the point with the minimum x-coordinate (and the smallest y-coordinate in case of ties)
+    start_point = min(points, key=lambda p: (p[0], p[1]))
+
+    while True:
+        hull.append(start_point)
+        endpoint = points[0]
+
+        for next_point in points:
+            if np.array_equal(endpoint, start_point) or (
+                np.any(np.cross(np.subtract(endpoint, start_point), np.subtract(next_point, start_point)) < 0)
+            ):
+                endpoint = next_point
+
+        start_point = endpoint
+
+        if np.array_equal(start_point, hull[0]):
+            break
+
+    return np.array(hull)
+
 
 points = generate_banana_points(obj_file_path)
-hull = get_hull_faces(points)
+# hull = get_hull_faces(points)
+
+hull = gift_wrapping(points)
 
 draw_convex_hull_3d(points, hull)
 plt.pause(0.1)  # Add a small pause to allow the 3D plot to render
