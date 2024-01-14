@@ -5,6 +5,8 @@ from tkinter import filedialog
 import tkinter as tk
 import numpy as np
 import matplotlib.animation as animation
+from matplotlib.widgets import Button
+import os
 
 
 def choose_file():
@@ -12,6 +14,29 @@ def choose_file():
     root.withdraw()  # Hide the main window
     file_path = filedialog.askopenfilename(title="Select OBJ File", filetypes=[("OBJ files", "*.obj")])
     return file_path
+
+
+button = None
+
+
+import tkinter as tk
+from tkinter import filedialog
+
+def save_figure(button, event):
+    print("Button clicked, saving figure...")  # Print a message to the console
+    button.ax.set_visible(False)  # Hide the button
+    plt.gcf().canvas.draw_idle()  # Force a complete redraw of the figure
+
+    root = tk.Tk()
+    root.withdraw()  # Hide the main window
+    file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+
+    if file_path:  # If a file path is selected
+        plt.savefig(file_path)
+        print("File saved:", file_path)
+
+    button.ax.set_visible(True)  # Show the button again
+    plt.gcf().canvas.draw_idle()  # Force a complete redraw of the figure
 
 # Replace the fixed file path with a function call to choose_file()
 obj_file_path = choose_file()
@@ -97,32 +122,46 @@ def init_visualization_2d(vertices, hull, show_labels=True):
 
     plt.show()
 
-def animate_convex_hull(vertices, hull_front, hull_top, hull_side): 
+def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=True): 
     fig = plt.figure(figsize=(12, 6))
 
     # 2D subplot for front view (x, z)
     ax_2d_front = fig.add_subplot(131)
     ax_2d_front.plot(vertices[:, 0], vertices[:, 2], 's', markersize=2)  # Use 's' for square markers
-    ax_2d_front.set_xlabel('X Axis', fontsize=14, color='green')
-    ax_2d_front.set_ylabel('Z Axis', fontsize=14, color='green')
     ax_2d_front.set_title('Front View')
     ax_2d_front.axis('equal')
+    if show_labels:
+        ax_2d_front.set_xlabel('X Axis', fontsize=14, color='green')
+        ax_2d_front.set_ylabel('Z Axis', fontsize=14, color='green')
+
+    else:
+        ax_2d_front.set_xticks([])
+        ax_2d_front.set_yticks([])
 
     # 2D subplot for top view (x, y)
     ax_2d_top = fig.add_subplot(132)
     ax_2d_top.plot(vertices[:, 0], vertices[:, 1], 's', markersize=2)  # Use 's' for square markers
-    ax_2d_top.set_xlabel('X Axis', fontsize=14, color='green')
-    ax_2d_top.set_ylabel('Y Axis', fontsize=14, color='green')
     ax_2d_top.set_title('Top View')
     ax_2d_top.axis('equal')
+    if show_labels:
+        ax_2d_top.set_xlabel('X Axis', fontsize=14, color='green')
+        ax_2d_top.set_ylabel('Y Axis', fontsize=14, color='green')
+
+    else:
+        ax_2d_top.set_xticks([])
+        ax_2d_top.set_yticks([])
 
     # 2D subplot for side view (y, z)
     ax_2d_side = fig.add_subplot(133)
     ax_2d_side.plot(vertices[:, 1], vertices[:, 2], 's', markersize=2)  # Use 's' for square markers
-    ax_2d_side.set_xlabel('Y Axis', fontsize=14, color='green')
-    ax_2d_side.set_ylabel('Z Axis', fontsize=14, color='green')
     ax_2d_side.set_title('Side View')
     ax_2d_side.axis('equal')
+    if show_labels:
+        ax_2d_side.set_xlabel('Y Axis', fontsize=14, color='green')
+        ax_2d_side.set_ylabel('Z Axis', fontsize=14, color='green')
+    else:
+        ax_2d_side.set_xticks([])
+        ax_2d_side.set_yticks([])
 
     plt.pause(1)
 
@@ -168,6 +207,11 @@ def animate_convex_hull(vertices, hull_front, hull_top, hull_side):
 
         plt.pause(0.2)
 
+     # Add a button for saving the figure
+    ax_button = plt.axes([0.8, 0.05, 0.1, 0.075])
+    button = Button(ax_button, 'Save Figure')
+    button.on_clicked(lambda event: save_figure(button, event))
+
     plt.show()
 
 # Load vertices and faces from OBJ file
@@ -179,4 +223,5 @@ hull_2d_top = ConvexHull(vertices[:, [0, 1]])
 hull_2d_side = ConvexHull(vertices[:, [1, 2]])
 
 # Animate the convex hulls
-animate_convex_hull(vertices, hull_2d_front, hull_2d_top, hull_2d_side)
+animate_convex_hull(vertices, hull_2d_front, hull_2d_top, hull_2d_side, show_labels=False);
+
