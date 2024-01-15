@@ -22,17 +22,21 @@ button = None
 import tkinter as tk
 from tkinter import filedialog
 
+
+
 def save_figure(button, event):
     print("Button clicked, saving figure...")  # Print a message to the console
     button.ax.set_visible(False)  # Hide the button
     plt.gcf().canvas.draw_idle()  # Force a complete redraw of the figure
+
+    dpi
 
     root = tk.Tk()
     root.withdraw()  # Hide the main window
     file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
 
     if file_path:  # If a file path is selected
-        plt.savefig(file_path)
+        plt.savefig(file_path, dpi=dpi)
         print("File saved:", file_path)
 
     button.ax.set_visible(True)  # Show the button again
@@ -208,7 +212,24 @@ def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=T
         plt.pause(0.2)
 
      # Add a button for saving the figure
-    ax_button = plt.axes([0.8, 0.05, 0.1, 0.075])
+
+
+    ax_2d_top.set_visible(False)
+    ax_2d_side.set_visible(False)   
+
+
+    fig = ax_2d_front.get_figure()
+    global dpi
+    dpi = fig.dpi
+    fig.set_size_inches(1300/fig.dpi, 1600/fig.dpi)
+    fig_width, fig_height = fig.get_size_inches()
+    ax_width = ax_2d_front.get_window_extent().width / fig.dpi / fig_width
+    ax_height = ax_2d_front.get_window_extent().height / fig.dpi / fig_height
+    left = (1 - ax_width) / 2
+    bottom = (1 - ax_height) / 2
+    ax_2d_front.set_position([left, bottom, ax_width, ax_height])
+
+    ax_button = plt.axes([0.8, 0.9, 0.1, 0.075])
     button = Button(ax_button, 'Save Figure')
     button.on_clicked(lambda event: save_figure(button, event))
 
