@@ -6,6 +6,7 @@
 }
 
 .debug {
+  visibility: hidden;
   position: fixed;
   top: 4px;
   left: 50%;
@@ -166,7 +167,7 @@ col {
 }
 
 .slots .reel1 {
-  background-image: url(1.png);
+  background-image: url(01.png);
   background-size: cover;
   background-position-y: calc(var(--size-multiplier) * -79px)
 
@@ -174,21 +175,21 @@ col {
 }
 
 .slots .reel2 {
-  background-image: url(2.png);
+  background-image: url(01.png);
   background-size: cover;
   background-position-y: calc(var(--size-multiplier) * -79px)
 
 }
 
 .slots .reel3 {
-  background-image: url(3.png);
+  background-image: url(01.png);
   background-size: cover;
   background-position-y: calc(var(--size-multiplier) * -79px)
 
 }
 
 .slots .reel4 {
-  background-image: url(4.png);
+  background-image: url(01.png);
   background-size: cover;
   background-position-y: calc(var(--size-multiplier) * -79px)
 
@@ -196,7 +197,7 @@ col {
 }
 
 .slots .reel5 {
-  background-image: url(5.webp);
+  background-image: url(01.png);
   background-size: cover;
   background-position-y: calc(var(--size-multiplier) * -79px)
 
