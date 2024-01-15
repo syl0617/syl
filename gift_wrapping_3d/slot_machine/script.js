@@ -5,12 +5,18 @@ const debugEl = document.getElementById('debug'),
 // Mapping of indexes to icons: start from banana in middle of initial position and then upwards
 // iconMap = ["banana", "seven", "cherry", "plum", "orange", "bell", "bar", "lemon", "melon"],
 
-iconMap_1 = ["grey","blue","green", "pink","white","yellow","blue","yellow","white",],
-iconMap_2 = ["red","black","pink", "blue","darkred","grey","blue","orange","yellow",],
+// iconMap_1 = ["grey","blue","green", "pink","white","yellow","blue","yellow","white",],
+// iconMap_2 = ["red","black","pink", "blue","darkred","grey","blue","orange","yellow",],
 
-iconMap_3 = ["blue", "blue","yellow","yellow","darkgrey","silver","darkgrey","white","silver"],
-iconMap_4 = ["white", "black" ,"black","red","black","blue","white","blue","red",],
-iconMap_5 = ["banana", "seven", "cherry", "plum", "orange", "bell", "bar", "lemon", "melon"]
+// iconMap_3 = ["blue", "blue","yellow","yellow","darkgrey","silver","darkgrey","white","silver"],
+// iconMap_4 = ["white", "black" ,"black","red","black","blue","white","blue","red",],
+// iconMap_5 = ["banana", "seven", "cherry", "plum", "orange", "bell", "bar", "lemon", "melon"]
+
+iconMap_1 = [1,0,8,7,6,5,4,3,2,1],
+iconMap_2 = [1,0,8,7,6,5,4,3,2,1],
+iconMap_3 = [1,0,8,7,6,5,4,3,2,1],
+iconMap_4 = [1,0,8,7,6,5,4,3,2,1],
+iconMap_5 = [1,0,8,7,6,5,4,3,2,1];
 
 // 정방향
 // iconMap_1 = ["blue","grey","white", "yellow","blue","yellow","white","pink","green"],
@@ -101,7 +107,7 @@ function rollAll() {
   if (winContainer) {
   winContainer.style.visibility = 'hidden';
 }
-  // spinButton.disabled = true;
+  spinButton.disabled = true;
 
 
   debugEl.textContent = 'rolling...';
@@ -167,7 +173,7 @@ function rollAll() {
         //   setTimeout(() => document.querySelector(".slots").classList.remove(winCls), 2000);
         //   winSound.play();
         } else {
-          // rollAgain(); // Roll again until win5 condition is met
+          rollAgain(); // Roll again until win5 condition is met
         }
       });
   };

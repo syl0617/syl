@@ -221,7 +221,14 @@ def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=T
     fig = ax_2d_front.get_figure()
     global dpi
     dpi = fig.dpi
-    fig.set_size_inches(1300/fig.dpi, 1600/fig.dpi)
+    # fig.set_size_inches(1300/fig.dpi, 1600/fig.dpi)
+
+    ax_button = plt.axes([0.8, 0.9, 0.1, 0.075])
+    button = Button(ax_button, 'Save Figure')
+    button.on_clicked(lambda event: save_figure(button, event))
+
+    
+    fig.set_size_inches(1300/100, 1600/100)
     fig_width, fig_height = fig.get_size_inches()
     ax_width = ax_2d_front.get_window_extent().width / fig.dpi / fig_width
     ax_height = ax_2d_front.get_window_extent().height / fig.dpi / fig_height
@@ -229,9 +236,8 @@ def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=T
     bottom = (1 - ax_height) / 2
     ax_2d_front.set_position([left, bottom, ax_width, ax_height])
 
-    ax_button = plt.axes([0.8, 0.9, 0.1, 0.075])
-    button = Button(ax_button, 'Save Figure')
-    button.on_clicked(lambda event: save_figure(button, event))
+
+    fig.set_size_inches(1300/100, 1600/100)
 
     plt.show()
 
