@@ -73,7 +73,7 @@ def load_obj(filename):
 
     return np.array(vertices), np.array(faces)
 
-def init_visualization_2d(vertices, hull, show_labels=True):
+# def init_visualization_2d(vertices, hull, show_labels=True):
     fig = plt.figure(figsize=(12, 6))
 
     # 2D subplot for front view (x, z)
@@ -125,6 +125,8 @@ def init_visualization_2d(vertices, hull, show_labels=True):
     ax_2d_side.axis('equal')
 
     plt.show()
+
+
 
 def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=True): 
     fig = plt.figure(figsize=(12, 6))
@@ -193,6 +195,7 @@ def animate_convex_hull(vertices, hull_front, hull_top, hull_side, show_labels=T
     for i in range(max(len_front, len_top, len_side)):
         if i < len_front - 1:
             ax_2d_front.plot(vertices[sorted_vertices_front[i:i+2], 0], vertices[sorted_vertices_front[i:i+2], 2], 'k-')
+            
         elif i == len_front - 1:
             ax_2d_front.plot([vertices[sorted_vertices_front[i], 0], vertices[sorted_vertices_front[0], 0]], 
                             [vertices[sorted_vertices_front[i], 2], vertices[sorted_vertices_front[0], 2]], 'k-')
